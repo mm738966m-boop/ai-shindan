@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AIの使い方診断</title>
+<meta name="description" content="技術者ではない人のための、あなたに合うAIの使い方診断。3分・無料・答えは保存しません。">
+<link rel="canonical" href="https://mm738966m-boop.github.io/ai-shindan/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="あなたに合うAIの使い方診断（3分・無料）">
+<meta property="og:description" content="朝のコーヒーの間に、今日やることをAIがもう届けている。技術者ではない人の、毎日の働き方。あなたに合う始め方を3分の診断でお渡しします。">
+<meta property="og:url" content="https://mm738966m-boop.github.io/ai-shindan/">
+<meta property="og:image" content="https://mm738966m-boop.github.io/ai-shindan/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#0E7C86; --deep:#0A5A62; --ink:#1C3236; --ink2:#4A6468;
+  --soft:#EEF6F7; --line:#D5E4E6; --gold:#A87A1F; --goldfill:#D9A441; --goldbg:#FBF4E3;
+  --bg:#F7FBFB; --card:#fff; --onteal:#fff; --line-green:#06C755;
+  --round:"BIZ UDPGothic","Hiragino Sans",sans-serif;
+  --head:"Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --teal:#4FB8C1; --deep:#7FD0D7; --ink:#E6F1F2; --ink2:#A9C2C5; --soft:#16292C; --line:#2A4246;
+  --gold:#E2B85A; --goldfill:#E2B85A; --goldbg:#2B2416; --bg:#0F1D1F; --card:#14272A; --onteal:#0F1D1F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --teal:#4FB8C1; --deep:#7FD0D7; --ink:#E6F1F2; --ink2:#A9C2C5; --soft:#16292C; --line:#2A4246;
+  --gold:#E2B85A; --goldfill:#E2B85A; --goldbg:#2B2416; --bg:#0F1D1F; --card:#14272A; --onteal:#0F1D1F; color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--round);font-size:18px;font-weight:400;line-height:1.9;letter-spacing:.02em}
+h1,h2,h3{font-family:var(--head);line-height:1.45}
+h1{font-size:clamp(28px,6.4vw,42px);color:var(--deep);font-weight:900}
+h2{font-size:clamp(23px,4.6vw,30px);color:var(--deep);font-weight:900}
+h3{font-size:20px;color:var(--deep);font-weight:900}
+.wrap{max-width:760px;margin:0 auto;padding:28px 16px 64px}
+.tag{display:inline-block;font-size:15px;font-weight:700;color:var(--gold);background:var(--goldbg);border-radius:999px;padding:2px 14px}
+.small{font-size:15px;color:var(--ink2)}
+.card{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:22px}
+.soft{background:var(--soft);border-radius:22px;padding:20px 22px}
+.gold{background:var(--goldbg);border-radius:22px;padding:20px 22px}
+.stack>*+*{margin-top:16px}
+.hero{display:grid;grid-template-columns:1fr 150px;gap:12px;align-items:center}
+.hero img{width:150px;height:auto}
+@media (max-width:560px){.hero{grid-template-columns:1fr 88px}.hero img{width:88px}.hero h1{font-size:25px}}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:var(--soft);color:var(--deep);border-radius:999px;padding:4px 14px;font-weight:700;font-size:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:12px 26px;border-radius:999px;border:0;font-family:var(--head);font-weight:900;font-size:19px;cursor:pointer;text-decoration:none;transition:transform .15s ease, box-shadow .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn.main{background:var(--line-green);color:#fff;box-shadow:0 6px 0 #04913f}
+.btn.main:active{transform:translateY(3px);box-shadow:0 3px 0 #04913f}
+.btn.sub{background:var(--card);color:var(--deep);border:2px solid var(--teal)}
+.btn.wide{width:100%}
+.progress{height:12px;background:var(--soft);border-radius:999px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--goldfill));border-radius:999px;transition:width .35s ease}
+.q{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.opts{display:grid;gap:10px;margin-top:16px}
+.opt{display:block;width:100%;text-align:left;background:var(--card);color:var(--ink);border:2px solid var(--line);border-radius:18px;padding:14px 18px;font-family:var(--round);font-size:18px;font-weight:700;line-height:1.6;cursor:pointer;transition:border-color .15s, background .15s}
+.opt:hover{border-color:var(--teal)}
+.opt.on{border-color:var(--teal);background:var(--soft)}
+.qnav{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.link{background:none;border:0;color:var(--ink2);font-size:16px;text-decoration:underline;cursor:pointer;font-family:var(--round)}
+.type-head{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center}
+.type-head img{width:110px}
+@media (max-width:560px){.type-head{grid-template-columns:72px 1fr}.type-head img{width:72px}.type-head h1{font-size:23px}}
+.prompt{position:relative;background:var(--card);border:2px dashed var(--teal);border-radius:18px;padding:16px 18px;white-space:pre-wrap;font-size:17px;line-height:1.8}
+.copy{margin-top:10px}
+.steps{display:grid;gap:12px;counter-reset:s}
+.steps li{list-style:none;display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start}
+.steps li::before{counter-increment:s;content:counter(s);width:40px;height:40px;border-radius:50%;background:var(--teal);color:var(--onteal);display:grid;place-items:center;font-weight:900;font-family:var(--head)}
+.ladder{display:grid;gap:10px}
+.rung{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:12px 16px}
+.rung b{color:var(--deep)}
+.rung .price{font-family:var(--head);font-weight:900;color:var(--gold);white-space:nowrap}
+.rung.now{border-color:var(--goldfill);background:var(--goldbg)}
+.books{display:grid;gap:10px}
+.book{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:14px 16px}
+.book .p{font-weight:700;color:var(--gold);font-size:16px}
+.book.free{border-color:var(--line-green)}
+.book.free .p{color:var(--line-green)}
+.where{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.where span{font-size:14px;font-weight:700;border-radius:999px;padding:2px 12px;background:var(--soft);color:var(--deep)}
+.hidden{display:none}
+footer{margin-top:40px;text-align:center}
+/* ===== 入口LP ===== */
+html,body{overflow-x:hidden}
+#start:not(.hidden) + main{padding:0}
+
+
+@media (max-width:560px){.me{grid-template-columns:76px 1fr}.me img{width:76px}}
+@media (max-width:560px){.lp-h1{font-size:29px}}
+.lp-in{max-width:960px;margin:0 auto;padding:0 16px}
+.lp-hero{position:relative;min-height:min(92vh,760px);display:flex;align-items:flex-end;overflow:hidden;background:#0B3B40}
+.lp-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:45% 50%;animation:zoom 18s ease-out both}
+@keyframes zoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+.lp-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,38,42,.95) 0%,rgba(5,38,42,.78) 38%,rgba(5,38,42,.15) 72%,rgba(5,38,42,0) 100%)}
+.lp-hero-in{position:relative;max-width:960px;width:100%;margin:0 auto;padding:0 16px 48px;color:#fff}
+.lp-pill{display:inline-block;font-size:14px;font-weight:700;letter-spacing:.04em;color:#F3D68E;border:1px solid rgba(243,214,142,.6);background:rgba(255,255,255,.08);backdrop-filter:blur(6px);border-radius:999px;padding:4px 14px}
+.lp-h1{margin-top:14px;font-family:var(--head);font-weight:900;font-size:clamp(30px,6.6vw,56px);line-height:1.35;color:#fff;letter-spacing:.02em}
+.glow{background:linear-gradient(90deg,#7FE3EA,#F3D68E);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lp-sub{margin-top:14px;font-size:18px;font-weight:500;color:#E3F1F2;max-width:620px}
+.lp-hero .btn{margin-top:22px;min-width:min(100%,360px)}
+.lp-note{margin-top:10px;font-size:14px;color:#B9D3D6}
+.lp-h2{font-family:var(--head);font-weight:900;font-size:clamp(23px,4.8vw,36px);color:var(--deep);line-height:1.45;margin-top:10px}
+.lp-h2.light{color:#fff}
+.lp-day,.lp-can,.lp-try,.lp-what,.lp-me{padding:64px 0 0}
+.day-grid{display:grid;grid-template-columns:320px 1fr;gap:36px;align-items:center;margin-top:24px}
+@media (max-width:760px){.day-grid{grid-template-columns:1fr}}
+.phone{position:relative;margin:0 auto;width:100%;max-width:320px;border-radius:38px;padding:16px 14px 22px;background:linear-gradient(160deg,#0E4D54,#08262A);box-shadow:0 30px 60px -20px rgba(8,60,66,.55),inset 0 0 0 2px rgba(255,255,255,.08)}
+.phone::before{content:"";position:absolute;inset:-40px;z-index:-1;background:radial-gradient(closest-side,rgba(79,184,193,.35),transparent);filter:blur(10px);animation:pulse 5s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.5;transform:scale(.95)}}
+.phone-top{text-align:center;color:#9FD6DB;font-size:13px;font-weight:700;padding:4px 0 12px}
+.notes{display:grid;gap:10px}
+.note{background:rgba(255,255,255,.94);color:#1C3236;border-radius:18px;padding:10px 14px;font-size:15px;line-height:1.6;opacity:0;transform:translateY(14px) scale(.98)}
+.note b{font-family:var(--head);color:#0E7C86;font-size:14px}
+.note p{margin-top:2px}
+.in .note{animation:pop .6s cubic-bezier(.2,.8,.3,1.2) forwards}
+.in .note:nth-child(2){animation-delay:.7s}.in .note:nth-child(3){animation-delay:1.4s}.in .note:nth-child(4){animation-delay:2.1s}
+@keyframes pop{to{opacity:1;transform:none}}
+.day-text p+p{margin-top:12px}
+.day-text p:first-child{font-family:var(--head);font-weight:900;font-size:22px;color:var(--deep)}
+.can-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+@media (max-width:760px){.can-grid{grid-template-columns:1fr}}
+.can{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:22px;transition:transform .25s, box-shadow .25s}
+.can:hover{transform:translateY(-4px);box-shadow:0 14px 30px -18px rgba(14,124,134,.5)}
+.can .ico{display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,var(--teal),#4FB8C1);color:#fff;font-family:var(--head);font-weight:900;font-size:24px}
+.can h3{margin-top:12px}
+.lp-try .prompt{margin-top:14px}
+.types{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.types span{border-radius:999px;padding:6px 14px;font-weight:700;font-size:16px;color:var(--deep);background:var(--soft);border:1px solid var(--line)}
+.me{display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:center;background:var(--soft);border-radius:24px;padding:20px}
+.me img{width:110px}
+.lp-last{margin-top:72px;padding:72px 0 76px;background:radial-gradient(600px 300px at 20% 0%,rgba(79,184,193,.35),transparent),radial-gradient(500px 260px at 90% 100%,rgba(226,184,90,.25),transparent),#08343A}
+.lp-last .lp-note{color:#9FBFC2}
+.lp-last .btn.sub{background:transparent;color:#fff;border-color:rgba(255,255,255,.75);font-size:17px;min-height:50px}
+.lp-last .btn.sub:hover{background:rgba(255,255,255,.12)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.lp-photo,.phone::before{animation:none}.note{opacity:1;transform:none}.in .note{animation:none}.reveal{opacity:1;transform:none;transition:none}}
+
+/* ===== LP 第2版 ===== */
+.glass{position:absolute;z-index:2;right:6%;top:16%;display:flex;gap:10px;align-items:center;max-width:300px;padding:12px 16px;border-radius:20px;background:rgba(255,255,255,.72);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 18px 40px -18px rgba(5,38,42,.55),inset 0 0 0 1px rgba(255,255,255,.6);color:#1C3236;animation:glassIn .9s 1.1s cubic-bezier(.2,.8,.3,1.2) both, float 6s 2s ease-in-out infinite}
+.glass b{font-family:var(--head);font-size:16px;color:#0E7C86}
+.glass p{font-size:16px;font-weight:700;line-height:1.5}
+.glass .dot{flex:none;width:12px;height:12px;border-radius:50%;background:#06C755;box-shadow:0 0 0 0 rgba(6,199,85,.6);animation:ping 2s 2s infinite}
+@keyframes glassIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes float{50%{transform:translateY(-6px)}}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(6,199,85,0)}100%{box-shadow:0 0 0 0 rgba(6,199,85,0)}}
+.lp-hero-in>*{animation:up .8s ease both}
+.lp-hero-in>*:nth-child(1){animation-delay:.15s}.lp-hero-in>*:nth-child(2){animation-delay:.3s}.lp-hero-in>*:nth-child(3){animation-delay:.5s}.lp-hero-in>*:nth-child(4){animation-delay:.65s}.lp-hero-in>*:nth-child(5){animation-delay:.8s}.lp-hero-in>*:nth-child(6){animation-delay:.9s}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.lp-hero .btn.main{animation:up .8s .8s ease both, glowbtn 2.8s 2s ease-in-out infinite}
+@keyframes glowbtn{50%{box-shadow:0 6px 0 #04913f,0 0 0 8px rgba(6,199,85,.18)}}
+.btn{font-size:20px;text-shadow:0 1px 1px rgba(0,0,0,.15)}
+.lp-for{margin-top:14px;font-size:16px;font-weight:700;color:#F3D68E}
+.lp-pill{font-size:16px}
+.lp-note{font-size:16px}
+.tag,.small,.where span{font-size:16px}
+.note{font-size:17px}.note b{font-size:16px}
+.phone-top{font-size:16px}
+.lp-shade{background:linear-gradient(to top,rgba(5,38,42,.92) 0%,rgba(5,38,42,.62) 40%,rgba(5,38,42,0) 70%)}
+.band{padding:72px 0 76px;background:radial-gradient(520px 280px at 85% 10%,rgba(79,184,193,.35),transparent),radial-gradient(420px 240px at 0% 100%,rgba(226,184,90,.18),transparent),#082E33;color:#E3F1F2}
+.band .lp-h2{color:#fff}
+.band .tag{background:rgba(255,255,255,.1);color:#F3D68E}
+.band .day-text p:first-child{color:#7FE3EA}
+.band .small{color:#A9C7CA}
+.band .phone{background:linear-gradient(160deg,#12606A,#0A2F34);box-shadow:0 30px 70px -20px rgba(0,0,0,.6),inset 0 0 0 2px rgba(255,255,255,.1)}
+.can{background:linear-gradient(160deg,var(--card),var(--soft))}
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(8,46,51,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transform:translateY(110%);transition:transform .3s ease}
+.sticky-cta .btn{width:100%;min-height:52px}
+.sticky-cta.show{transform:none}
+@media (min-width:761px){.sticky-cta{display:none}}
+#start.hidden .sticky-cta{display:none}
+@media (max-width:760px){
+  .lp-hero{display:block;min-height:0;background:#082E33}
+  .lp-photo{position:relative;display:block;height:52svh;min-height:300px;max-height:460px}
+  .lp-shade{top:auto;bottom:auto;height:120px;inset:auto 0 auto 0;margin-top:-120px;position:relative;background:linear-gradient(to bottom,rgba(8,46,51,0),#082E33)}
+  .glass{right:16px;top:calc(min(max(52svh,300px),460px) - 190px);max-width:250px}
+  .lp-hero-in{padding:0 16px 40px;margin-top:-40px}
+  .lp-hero .btn{width:100%}
+  .lp-last{margin-bottom:0;padding-bottom:110px}
+}
+@media (max-width:360px){.lp-h1{font-size:26px}}
+@media (prefers-reduced-motion:reduce){.glass,.lp-hero-in>*,.lp-hero .btn.main{animation:none;opacity:1}}
+
+/* ===== LP 第3版 ===== */
+.lp-gag{padding:64px 0 0}
+.gag-list{display:grid;gap:18px;margin-top:18px}
+.gag{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center}
+.gag img{width:150px;height:auto;mix-blend-mode:multiply}
+.gag.rev{grid-template-columns:1fr 150px}
+.gag.rev img{order:2}
+.gag.solo{grid-template-columns:1fr}
+@media (max-width:560px){.gag{grid-template-columns:110px 1fr}.gag img{width:110px}.gag.rev{grid-template-columns:1fr 110px}}
+.talk{display:grid;gap:8px}
+.me-say,.ai-say{position:relative;border-radius:20px;padding:10px 16px;font-weight:700;line-height:1.6;max-width:30em}
+.me-say{background:var(--card);border:2px solid var(--line);justify-self:start}
+.ai-say{background:var(--teal);color:var(--onteal);justify-self:end}
+.ai-say::before{content:"AI";font-family:var(--head);font-size:13px;font-weight:900;margin-right:8px;padding:1px 8px;border-radius:999px;background:rgba(255,255,255,.22)}
+.reveal .gag{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in .gag{opacity:1;transform:none}
+.reveal.in .gag:nth-child(2){transition-delay:.5s}.reveal.in .gag:nth-child(3){transition-delay:1s}
+.lp-h2.big{margin-top:28px;font-size:clamp(25px,5.2vw,38px)}
+.lp-gag p+p{margin-top:8px}
+.lp-roles{padding:64px 0 0}
+.role-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.role{flex:1 1 30%;min-height:52px;border-radius:999px;border:2px solid var(--teal);background:var(--card);color:var(--deep);font-family:var(--head);font-weight:900;font-size:17px;cursor:pointer;padding:6px 12px;transition:background .2s,color .2s}
+.role.on{background:var(--teal);color:var(--onteal)}
+.role{white-space:nowrap}@media (max-width:560px){.role{font-size:16px;padding:6px 6px;letter-spacing:0}}
+.sample .tag,.result-sample .tag{justify-self:start}
+.role-cards{display:grid;gap:10px;margin-top:16px}
+.rcard{background:var(--card);border:2px solid var(--line);border-radius:20px;overflow:hidden}
+.rcard[open]{border-color:var(--teal)}
+.rcard summary{list-style:none;cursor:pointer;padding:14px 16px;font-family:var(--head);font-weight:900;font-size:18px;color:var(--deep);display:flex;gap:10px;align-items:center}
+.rcard summary::-webkit-details-marker{display:none}
+.rcard summary::after{content:"＋";margin-left:auto;color:var(--teal)}
+.rcard[open] summary::after{content:"－"}
+.ex{flex:none;font-size:14px;font-family:var(--round);font-weight:700;color:var(--gold);background:var(--goldbg);border-radius:999px;padding:0 10px}
+.rbody{padding:0 16px 16px;display:grid;gap:10px}
+.rbody .prompt{font-size:16px}
+.sample{margin-top:16px;background:var(--card);border:2px solid var(--line);border-radius:20px;padding:16px 18px;display:grid;gap:8px}
+.bridge{margin-top:16px;background:var(--goldbg);border-radius:22px;padding:18px;text-align:center;display:grid;gap:12px}
+.result-sample{margin-top:16px;background:var(--card);border:2px dashed var(--teal);border-radius:20px;padding:16px 18px}
+.lp-pro{padding:56px 0 0}
+.pro{background:linear-gradient(135deg,var(--soft),var(--goldbg));border:2px solid var(--line);border-radius:24px;padding:20px 22px}
+.pro p{margin-top:8px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .gag img{mix-blend-mode:normal;border-radius:24px}}
+:root[data-theme="dark"] .gag img{mix-blend-mode:normal;border-radius:24px}
+
+
+.ex{font-size:16px}
+.ai-say::before{font-size:16px}
+.gag-list{gap:14px}
+.rcard{animation:cardIn .35s ease both}
+@keyframes cardIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.role.on{box-shadow:0 4px 12px -4px rgba(14,124,134,.5)}
+@media (prefers-reduced-motion:reduce){.rcard{animation:none}.reveal .gag{opacity:1;transform:none;transition:none}}
+
+.lp-foot{max-width:720px;margin:48px auto 0;padding:24px 16px 40px;border-top:1px solid rgba(14,124,134,.18);font-size:14px;line-height:1.7;color:#5F7B7F;text-align:center}
+.lp-foot a{color:#0E7C86}
+</style>
+</head>
+<body>
+<!-- 入口LP -->
+<div id="start">
+  <header class="lp-hero">
+    <img class="lp-photo" src="img/hero_morning.webp" alt="朝の机でスマホを手にする手元。スマホから光の線がふわりと流れている">
+    <div class="lp-shade"></div>
+    <div class="glass" aria-hidden="true"><span class="dot"></span><div><b>AIからのお知らせ　7:00</b><p>今日やることの1枚が届きました</p></div></div>
+    <div class="lp-hero-in">
+      <span class="lp-pill">あなたに合うAIの使い方診断・無料・3分</span>
+      <h1 class="lp-h1">朝のコーヒーの間に、<br>今日やることを<br><span class="glow">AIがもう届けている。</span></h1>
+      <p class="lp-sub">技術者ではない私の、毎日の働き方です。<br>あなたに合う始め方を、3分の診断でお渡しします。</p>
+      <p class="lp-for">家事も、仕事も。AIに任せられる所から。プログラムは書きません。</p>
+      <button class="btn main go" id="hero-go">3分で診断する（無料）</button>
+      <p class="lp-note">名前もメールも要りません。答えは保存しません。</p>
+    </div>
+  </header>
+  <div class="sticky-cta" id="sticky"><button class="btn main go">3分で診断する（無料）</button></div>
+
+  <section class="lp-gag">
+    <div class="lp-in">
+      <span class="tag">AIに頼んでみた</span>
+      <p class="small" style="margin-top:6px">ロボは、ときどきこう答えます。</p>
+      <div class="gag-list">
+        <div class="gag"><img src="img/gag_laundry.webp" alt="洗濯ものに埋もれて困っているそろばんロボ"><div class="talk"><p class="me-say">「洗濯もの、たたんどいて」</p><p class="ai-say">「……たためる手が、ついていません」</p></div></div>
+        <div class="gag rev"><img src="img/gag_cooking.webp" alt="焦げたホットケーキのフライパンを持って困っているそろばんロボ"><div class="talk"><p class="me-say">「代わりに晩ごはん作っといて」</p><p class="ai-say">「レシピなら、30秒で出せます。包丁は持てません」</p></div></div>
+        <div class="gag solo"><div class="talk"><p class="me-say">「あの人に『ごめん』って言っといて」</p><p class="ai-say">「言葉は一緒に考えます。言う人は、あなたです」</p></div></div>
+      </div>
+      <h2 class="lp-h2 big">たたむのは自分。<br>「たたむ時間」を作るのは、AI。</h2>
+      <p style="margin-top:12px">AIには体がありません。家事も、人に会うことも、決めることも、あなたの仕事です。</p>
+      <p>でも、書く・まとめる・並べる・思い出すは、AIの得意なこと。ここを任せると、自分にしかできないことに使える時間が増えるかもしれません。どれくらいかは、人それぞれです。</p>
+    </div>
+  </section>
+
+  <section class="lp-roles" id="roles">
+    <div class="lp-in">
+      <span class="tag">あなたの毎日だと？</span>
+      <h2 class="lp-h2">立場を選ぶと、使い方の例が出ます。</h2>
+      <p class="small" style="margin-top:6px">ここから先は、できることの「例」です。チャットで頼むだけなら、いまから試せます。</p>
+      <div class="role-tabs" role="tablist">
+        <button class="role on" data-r="0" role="tab">主婦・主夫</button>
+        <button class="role" data-r="1" role="tab">会社員</button>
+        <button class="role" data-r="2" role="tab">子育て中</button>
+        <button class="role" data-r="3" role="tab">定年前後</button>
+        <button class="role" data-r="4" role="tab">個人事業主・店主</button>
+      </div>
+      <div class="role-cards" id="role-cards"></div>
+      <div class="soft" style="margin-top:16px">
+        <p>お金・契約・個人情報の判断は、AIに任せません。名前や番号は、隠してから貼ります。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-day band">
+    <div class="lp-in">
+      <span class="tag">私の1日（個人事業主の例）</span>
+      <h2 class="lp-h2">私の場合は、<br>気づいたら届いています。</h2>
+      <div class="day-grid">
+        <div class="phone" aria-hidden="true">
+          <div class="phone-top"><span>AIからのお知らせ</span></div>
+          <div class="notes">
+            <div class="note"><b>7:00</b><p>今日やることの1枚が届きました。いちばん先は、見積もりの返事です。</p></div>
+            <div class="note"><b>11:20</b><p>打ち合わせのまとめです。決めたこと3つ・宿題2つ。</p></div>
+            <div class="note"><b>14:05</b><p>新しい申込を、予定表と名簿に入れました。</p></div>
+            <div class="note"><b>18:30</b><p>朝に話した音声から、記事の下書きができました。</p></div>
+          </div>
+        </div>
+        <div class="day-text">
+          <p>どれも、私が毎日つかっている仕組みです。</p>
+          <p>自分がやるのは、届いたものを読んで、決めることだけ。</p>
+          <p class="small">送る・払う・契約するなどの判断は、AIに任せません。必ず自分で決めます。</p>
+          <p class="small">（スマホの画面はイメージです）</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="lp-try">
+    <div class="lp-in">
+      <span class="tag">診断の前に、1つどうぞ・無料</span>
+      <h2 class="lp-h2">いま、試してみてください。</h2>
+      <p>頭の中の用事を貼るだけで、今日やることの1枚になります。ChatGPTでもClaudeでも、無料のまま使えます。</p>
+      <div class="prompt" id="lp-pt">頭の中の用事を、思いつくまま全部書きます。
+今日やる順に3つ選んで、1枚にまとめてください。
+急がないものは「今週中」に分けてください。
+
+【ここに、気になっている用事を、箇条書きでもバラバラでも書く】</div>
+      <button class="btn sub copy" id="lp-cp">この頼み方をコピーする</button>
+      <div class="sample">
+        <span class="tag">出てくる1枚の例</span>
+        <p><b>今日の3つ</b><br>1. 見積もりの返事（午前中に）<br>2. 銀行の書類を出す<br>3. 夕飯の買い物</p>
+        <p><b>今週中</b><br>・美容院の予約　・年賀状の住所の整理</p>
+      </div>
+      <div class="bridge">
+        <p><b>これが1つめです。</b><br>あなたに合う2つめは、3分の診断でお渡しします。</p>
+        <button class="btn main go">3分で診断する（無料）</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-what">
+    <div class="lp-in">
+      <h2 class="lp-h2">3分の診断で、分かること。</h2>
+      <ol class="steps" style="margin-top:14px">
+        <li><span><b>9つの質問に答える</b><br>仕事の形・AIの使い方・くり返しの作業の数など。</span></li>
+        <li><span><b>あなたのタイプが分かる</b><br>5つのタイプの、どれに近いか。</span></li>
+        <li><span><b>今日すぐ試せる頼み方を、もう1つ</b><br>「時間を取られる」と答えた作業に合わせて出します。</span></li>
+      </ol>
+      <div class="types">
+        <span>はじめの一歩</span><span>会社のルールの中で使う</span><span>使い方を磨く</span><span>自動化の入口</span><span>まかせて回す</span>
+      </div>
+      <div class="result-sample">
+        <span class="tag">結果の画面の見本</span>
+        <h3 style="margin-top:8px">使い方を磨くタイプ</h3>
+        <p>AIは使えています。同じ作業のくり返しはまだ少ないので、自動化より「使い方を磨く」方が効きます。</p>
+        <p class="small">このあと、あなたの答えに合わせた頼み方が1つと、合う使い方ガイドの一覧が出ます。</p>
+      </div>
+      <div class="gold" style="margin-top:16px"><p>「今は自動化はまだ早いです」と出ることもあります。<br>買わなくてよいときは、そう書きます。</p></div>
+    </div>
+  </section>
+
+  <section class="lp-me">
+    <div class="lp-in"><div class="me">
+      <img src="img/mascot_point.webp" alt="そろばんロボ">
+      <div>
+        <h3>この診断を作った人</h3>
+        <p>森川満章（もりかわ みちあき）。お金の先生で、技術者ではありません。</p>
+        <p>お客さまと話す時間を増やしたくて、裏の作業を少しずつAIに任せてきました。その毎日を、Voicyやnoteで話しています。</p>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="lp-pro">
+    <div class="lp-in">
+      <div class="pro">
+        <div>
+          <span class="tag">仕事で本格的に</span>
+          <h3 style="margin-top:8px">毎日、自動で動かしたい事業者の方へ</h3>
+          <p>申込の転記や打ち合わせのまとめを、決めた時間にAIが自分で動かす仕組みもあります。どれが合うかは、まず診断で確かめてください。</p>
+          <p class="small">Claudeの有料プラン（月3,000円ほど）が、代金とは別に要ります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-last">
+    <div class="lp-in" style="text-align:center">
+      <h2 class="lp-h2 light">あなたの「最初の1つ」を、<br>見つけにいきましょう。</h2>
+      <button class="btn main go" style="margin-top:18px">3分で診断する（無料）</button>
+      <p class="lp-note">金融の営業職の方は、別の勉強会をご案内しています。</p>
+      <a class="btn sub" href="https://fulfull.jp/ai-benkyokai/?ref=shindan" style="margin-top:12px">勉強会のページを見る（無料）</a>
+    </div>
+  </section>
+</div>
+
+<main class="wrap">
+
+<!-- 質問 -->
+<section id="quiz" class="hidden">
+  <div class="progress"><i id="bar"></i></div>
+  <p class="small" id="count" style="margin-top:8px"></p>
+  <div id="qbox"></div>
+  <div class="qnav"><button class="link" id="back">ひとつ戻る</button><span></span></div>
+</section>
+
+<!-- 結果 -->
+<section id="result" class="hidden stack"></section>
+
+<footer class="lp-foot">
+  <p>このページは、fulfull が作った非公式のガイドです。Anthropic 社・Claude の公式のものではありません。AI の答えはまちがうことがあります。お金・契約・個人情報の判断は、ご自分で行ってください。</p>
+  <p><a href="legal.html">特定商取引法の表示・返金の条件・プライバシーポリシー</a>　<a href="faq.html">よくある質問</a></p>
+</footer>
+</main>
+
+<script src="tracker.js"></script>
+<script>
+const Q=[
+ {t:"いまのお仕事に近いのは？",o:["会社勤めで、使えるパソコンやソフトに決まりがある","会社勤めだが、仕事のやり方は自分で決められる","自分で事業・店・副業をしている","家事・育児・その他が中心"]},
+ {t:"AIを使うのは、どのくらい？",o:["ほとんど使っていない","試したことがある","月に数回","週に数回","ほぼ毎日"],s:[0,1,2,3,4]},
+ {t:"AIの有料プランは？",o:["入っていないし、入る気もない","入っていないが、役に立つなら考える","入っている（Claude以外）","Claudeの有料プランに入っている"],s:[0,0,1,2]},
+ {t:"毎週、同じ形でくり返している作業はいくつ？",h:"例：同じような返事、同じ表への入力、同じ報告",o:["ほとんどない","1〜2個","3〜5個","6個以上"],s:[0,1,2,3]},
+ {t:"いちばん時間を取られるのは？",o:["文章を書くこと（返事・投稿・報告）","予定や申込の整理","打ち合わせ・会議のあとのまとめ","調べもの・長い資料を読むこと","特に思いつかない"]},
+ {t:"お客さまや取引先の個人情報は？",o:["ほとんど扱わない","扱うが、名前などを伏せて使える","扱い、伏せられない（貼らないと進まない）"]},
+ {t:"パソコンを使う時間は？",o:["毎日長く","週に数回","スマホ中心"],s:[2,1,0]},
+ {t:"新しい仕組みのために使える時間は？",o:["週に30分まで","週に1時間くらい","週に2時間以上"],s:[0,1,2]},
+ {t:"いまいちばん近い気持ちは？",o:["AIを使ってみたい。何から始めるか知りたい","今の使い方を、もっと上手にしたい","同じ作業を、自動で回したい","会社の仕事で、AIをうまく使いたい"]}
+];
+const A=[];let i=0;
+const $=s=>document.querySelector(s);
+document.querySelectorAll(".go").forEach(b=>b.onclick=()=>{$("#start").classList.add("hidden");$("#quiz").classList.remove("hidden");show();scrollTo(0,0)});
+document.querySelectorAll(".lp-gag,.lp-day,.lp-can,.lp-try,.lp-what,.lp-me").forEach(e=>e.classList.add("reveal"));
+document.querySelectorAll(".phone").forEach(e=>e.classList.add("reveal"));
+const io=("IntersectionObserver" in window)?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.18}):null;
+document.querySelectorAll(".reveal").forEach(e=>io?io.observe(e):e.classList.add("in"));
+
+const ROLES=[
+ [["レシートをパシャッと撮ると、家計簿の表","月末、たまったレシートを見るのも嫌になる。","写っている日付・店名・品目・金額を表にしてください。\n食費・日用品・その他に分けてください。\n読み取れない所は「？」にしてください。\n\n【ここにレシートの写真を送る。カード番号や名前は隠す】","日付・店・品目・金額・分類の表。表計算にそのまま貼れます。","読み間違いはあるので、合計は自分の目で確かめます。毎週自動で集計するには、有料プランと仕組みが要ります。"],
+  ["冷蔵庫の中身から、3日分の献立","夕方、冷蔵庫を開けて「何作ろう」で止まる。","この材料で、3日分の夕食の案をください。\n足りない物だけ、買い物メモにしてください。\n\n【ここに冷蔵庫の写真を送るか、材料を書く。例：にんじん・卵・鶏むね・残りごはん。好き嫌いも書く】","3日分の案と、足りない物のリスト。","アレルギーの有無は、必ず自分で確かめます。"],
+  ["長いお知らせを、「やること」だけに","町内会やマンションのお知らせ。長くて読むのがしんどい。","この文章を「やること」「期限」「持ち物」に分けてください。\n書いていないことは足さないでください。\n\n【ここにお知らせの文章を貼る。名前・住所は消す】","3つに分かれたリスト。","お金の手続きや契約が絡むものは、元の紙を自分で読みます。"],
+  ["家族への連絡文を3案","実家への相談や、集まりの日程のお願い。気を使って時間がかかる。","やわらかい文面を3案ください。送る前に私が直します。\n\n【ここに、伝えたいことを箇条書きで書く。例：月末に実家へ帰りたい。母は腰が悪いので、負担の少ない形で】","3パターンの下書き。選んで、直して、送るのは自分。",""]],
+ [["読みたかった本を、自分ごとに","積ん読。読んでも、読んだだけで終わる。","私が学んだことを、自分の暮らしで使える行動に変えてください。\n1. 貼ったものの要点を3つだけ。書いていないことは足さない\n2. 私の暮らしに合うところ・合わないところ\n3. 「私ならこう使う」案を3つ\n4. いちばん小さく始められる1つを「◯曜日の◯時に、◯◯を、◯分やる」の形に\n5. 1週間後にふりかえる質問を3つ\n\n【私のこと：仕事と1日の流れ、変えたいこと、使える時間】\n【本の題名と、自分のメモ・目次・気になった数か所（短く）】","要点3つ、自分に合う所、「自分ならこう使う」案、今週やる小さな行動1つ。","AIは本を読んでいません。貼ったものだけで答えます。本の全文は貼りません。"],
+  ["YouTubeの学びを、明日の行動に","いい動画を見たのに、翌日には忘れている。","上の「本を自分ごとに」と同じ頼み方で、【 】に動画の題名と、見ながら取った自分のメモを入れます。","要点と、明日やる小さな行動1つ。","AIは動画を見ていません。URLだけ送っても中身は分かりません。気になった数分ぶんの字幕か、自分のメモを貼ります。"],
+  ["会議メモを「決めたこと・宿題」に","会議のあと、だれが何をやるかあいまい。","このメモを「決めたこと」「宿題（だれが・いつまでに）」「まだ決まっていないこと」に分けてください。\n書いていないことは足さないでください。\n\n【ここに会議のメモを貼る】","3つに分かれたリスト。","会社の情報を貼ってよいかは、会社が決めます。迷うときは貼りません。"],
+  ["言いにくいメールの下書き","断る・お願いする・催促する。言い方で悩んで時間が過ぎる。","角が立たない言い方で、短く、3案ください。\n\n【ここに、状況と自分の気持ちを箇条書きで。相手の名前は伏せる】","3案。選んで、直して、送るのは自分。",""]],
+ [["園・学校のおたよりを、予定表に","プリントが毎日来る。提出日と持ち物の見落としが怖い。","日付ごとに、やること・持ち物・提出物を表にしてください。\n\n【ここにプリントの写真を送る。子どもの名前は隠す】","日付つきの表。カレンダーには自分で入れます。","大事な期限は、元のプリントで確かめます。"],
+  ["寝る前のおはなしを、一緒に作る","寝かしつけで、話のネタが尽きた。","3分で読めるおはなしを作ってください。最後は「おやすみ」で終わります。\n\n【ここに、子どもの年と好きなもの。例：5歳・電車とパンダが好き】","その場でできる短いお話。","読み聞かせる前に、自分で一度読みます。"],
+  ["頭の中のバタバタを、今日の3つに","用事が多すぎて、どこから手をつけるか分からない。","頭の中の用事を全部書きます。\n今日やる順に3つ選んで、残りは「今週中」に分けてください。\n\n【ここに用事をバラバラのまま書く】","今日の3つと、今週中のリスト。","毎朝自動で届くようにするには、有料プランと仕組みが要ります。私が毎日使っている「朝の1枚」がそれです。"]],
+ [["長い説明書を、やさしい言葉で","家電の説明書や役所の案内。字が小さくて読み切れない。","中学生に分かる言葉で、要点3つと、分からない言葉の説明をください。\n\n【ここに読みたい部分を貼る】","要点と言葉の説明。","年金・医療・契約の判断は、AIに任せず窓口で確かめます。"],
+  ["旅行の計画を、一緒に組む","行きたい場所はあるが、行程を組むのが面倒。","旅行の行程の案を2つください。\n\n【ここに、行き先・日数・歩ける時間・好きなもの。例：京都、2泊3日、1日2時間まで、寺と喫茶店】","行程の案2つ。","営業時間や料金は、公式のページで確かめます。"],
+  ["思い出話を、読める文章に","自分史や孫への手紙。書き出しで止まる。","この順番に並べて、読みやすい文にしてください。\n私の言い方は残して、書いていないことは足さないでください。\n\n【ここに思い出をメモのまま貼る】","文章の下書き。直すのは自分。",""]],
+ [["問い合わせの返事を、下書き","LINEやメールの返事に、毎日時間を取られる。","やわらかい返事の下書きをください。\n書いていないルールは足さないでください。\n\n【届いた文と、お店のルール（営業時間・料金など）を貼る。お客さまの名前は仮の呼び名に】","返事の下書き。送るのは自分。",""],
+  ["打ち合わせのあとの、まとめ","話のあと、決めたことのまとめが夜になる。","このメモを「決めたこと」「宿題」「次の連絡」に分けてください。\n書いていないことは足さないでください。\n\n【ここにメモ、または録画を文字にしたものを貼る】","決めたこと・宿題・次の連絡。","録画を置くだけでまとめが届く形は、私が毎日使っている仕組みです。有料プランと仕組みが要ります。"],
+  ["申込メールを、一覧の表に","申込がたまり、名簿の入力が後回しになる。","日付・名前・内容・連絡先を、表の1行にしてください。\n\n【ここにメール本文を貼る。名前は仮に】","表の1行ずつ。","届くたびに自動で表に入る形は、私が毎日使っている仕組みです。"],
+  ["発信の下書き","発信したいが、書き出しで止まる。","私の言い方を残して、読みやすい投稿にしてください。\n実績やお客さまの声など、書いていないことは足さないでください。\n\n【話したいことを、話し言葉のままメモで】","投稿の下書き。出すかどうかは自分。",""]]
+];
+function esc(t){return t.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+function showRole(r){
+  document.querySelectorAll(".role").forEach(b=>{const on=+b.dataset.r===r;b.classList.toggle("on",on);b.setAttribute("aria-selected",on)});
+  $("#role-cards").innerHTML=ROLES[r].map((c,k)=>`<details class="rcard"${k===0?" open":""}><summary><span class="ex">例</span>${c[0]}</summary><div class="rbody"><p>${c[1]}</p><div class="prompt">${esc(c[2])}</div><button class="btn sub copy rc" data-i="${k}">この頼み方をコピーする</button><p><b>出てくるもの：</b>${c[3]}</p>${c[4]?`<p class="small">${c[4]}</p>`:""}</div></details>`).join("");
+  document.querySelectorAll(".rc").forEach(b=>b.onclick=()=>{navigator.clipboard?.writeText(ROLES[r][+b.dataset.i][2]).then(()=>{b.textContent="コピーしました"}).catch(()=>{b.textContent="長押しで選んでコピーしてください"})});
+}
+document.querySelectorAll(".role").forEach(b=>b.onclick=()=>showRole(+b.dataset.r));
+showRole(0);
+const hg=$("#hero-go"),st=$("#sticky");
+function stickyCheck(){const rb=$("#roles").getBoundingClientRect().bottom;const hb=hg.getBoundingClientRect().bottom;st.classList.toggle("show",!$("#start").classList.contains("hidden")&&(hb<0&&rb<innerHeight*0.6||rb<0))}
+addEventListener("scroll",stickyCheck,{passive:true});stickyCheck();
+document.querySelectorAll(".go").forEach(b=>b.addEventListener("click",()=>st.classList.remove("show")));
+$("#lp-cp").onclick=()=>{navigator.clipboard?.writeText($("#lp-pt").textContent).then(()=>{$("#lp-cp").textContent="コピーしました"}).catch(()=>{$("#lp-cp").textContent="長押しで選んでコピーしてください"})};
+$("#back").onclick=()=>{if(i>0){i--;show()}else{$("#quiz").classList.add("hidden");$("#start").classList.remove("hidden")}};
+function show(){
+  const q=Q[i];
+  $("#bar").style.width=(i/Q.length*100)+"%";
+  $("#count").textContent=`質問 ${i+1} / ${Q.length}`;
+  $("#qbox").innerHTML=`<div class="q"><h2 style="margin-top:6px">${q.t}</h2>${q.h?`<p class="small">${q.h}</p>`:""}<div class="opts">${q.o.map((x,k)=>`<button class="opt${A[i]===k?" on":""}" data-k="${k}">${x}</button>`).join("")}</div></div>`;
+  document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{A[i]=+b.dataset.k;b.classList.add("on");setTimeout(()=>{i++;i<Q.length?show():result()},180)});
+}
+function judge(){
+  const sc=k=>Q[k].s?Q[k].s[A[k]]:0;
+  const total=sc(1)+sc(2)+sc(3)+sc(6)+sc(7);
+  if(A[0]===0)return 2;
+  if(A[1]<=1)return 1;
+  if(A[3]<=1)return 3;
+  if(total>=10&&(A[0]===1||A[0]===2))return 5;
+  if(total>=6)return 4;
+  return 3;
+}
+const PROMPTS=[
+ {k:"返事の下書き",t:"届いた文章への返事を、丁寧すぎない言葉で、3行の下書きにしてください。\n送る前に私が直します。書いていないことは足さないでください。\n\n【ここに、届いたLINEやメールの文章を貼る。相手の名前は「Aさん」に変える】"},
+ {k:"申込を表にする",t:"下のメールから「日にち・時間・名前・用件」を取り出して、表にしてください。\n分からないところは空欄のままにしてください。\n\n【ここに、申込や予約のメールを貼る。名前は「Aさん」に変える】"},
+ {k:"打ち合わせのまとめ",t:"下のメモを「決めたこと」「宿題（だれが・いつまでに）」「まだ決まっていないこと」の3つに分けてください。\n書いていないことは足さないでください。\n\n【ここに、打ち合わせのメモや、録画を文字にしたものを貼る】"},
+ {k:"長い文章の要点",t:"下の文章を「要点3つ」「分からない言葉の説明」「私が確かめた方がいいこと」に分けてください。\n\n【ここに、読むのに時間がかかる文章や資料を貼る】"},
+ {k:"今日やることの1枚",t:"頭の中の用事を、思いつくまま全部書きます。\n今日やる順に3つ選んで、1枚にまとめてください。\n急がないものは「今週中」に分けてください。\n\n【ここに、気になっている用事を、箇条書きでもバラバラでも書く】"}
+];
+const BOOKS=[
+ ["今日やることの1枚","ぐちゃぐちゃのメモを、今日やることの1枚にする",true],
+ ["打ち合わせのまとめ","録画やメモを、決めたこと・宿題にまとめる"],
+ ["話して記事","話したことを、記事の下書きにする"],
+ ["返事の下書き","返事の下書きを、自分の口ぐせで作る（送るのは自分）"],
+ ["SNSの下書き","SNSの投稿文を下書きして、自分の言葉に直す"],
+ ["長い文章の要点","長い文章・資料の要点を取り出す"],
+ ["頼み方の型","同じ頼み方を「型」にして保存する（自動化の土台）"],
+ ["AIの間違いの直し方","AIが変なことを言ったとき、直す・確かめる"]
+];
+const T={
+ 1:{img:"mascot_base",name:"はじめの一歩タイプ",lead:"今は、自動化はまだ早いです。まずはClaude（クロード）に頼むことに慣れるところからです。",body:"AIをまだあまり使っていない状態です。悪いことではありません。自動化は「決めた時間にAIが自分で動く」仕組みなので、頼むことに慣れてからの方がつまずきません。",books:[0,7],rung:1,ladderNote:"取説と自動化は、今は勧めません。必要になったときに見てください。"},
+ 2:{img:"mascot_think",name:"会社のルールの中で使うタイプ",lead:"自動化は、いまは勧めません。会社に決まりがあるなら、それを守るのが先です。",body:"会社のパソコンやソフトに決まりがあると、自動化の仕組みはそのまま持ち込めないことが多いです。会社やお客さまの情報をAIに貼ってよいかも、会社が決めることです。迷うときは貼らないでください。下の頼み方も、自分のメモで試してください。",books:[1,5,6],rung:1,ladderNote:"会社と関係のない副業などで、AIを自動で動かしたくなったら、そのときに取説を見てください。それまで買わなくて大丈夫です。"},
+ 3:{img:"mascot_point",name:"使い方を磨くタイプ",lead:"AIは使えています。同じ作業のくり返しはまだ少ないので、自動化より「使い方を磨く」方が効きます。",body:"自動化が効くのは、同じ形の作業が毎週たくさんあるときです。いまはそこまでではありません。困っているところに合う使い方ガイドを、3本まで選べば十分です。",books:null,rung:1,ladderNote:"自動化の世界が気になったら、取説で全体の絵を見られます。くり返しの作業が増えたときに、改めて考えてください。"},
+ 4:{img:"mascot_point",name:"自動化の入口タイプ",lead:"AIに慣れてきて、くり返しの作業もあります。自動化を試してよい段階です。",body:"自動化には、Claudeの有料プラン（Pro・月3,000円ほど）が要ります。代金とは別です。取説を読んでから、入るかどうか決められます。自動化の仕組みはいま準備中で、できたらLINEでお知らせします。",books:null,rung:2,steps:["Claude Codeの取説（1,980円）を読む。自動化に何が要るか分かります","合いそうなら「お試し」（2,980円）。毎朝7時に今日やることの1枚が届く、いちばん小さな自動化です","動いたら、3つセット（14,800円）で仕組みを足す"]},
+ 5:{img:"mascot_invite",name:"まかせて回すタイプ",lead:"毎日AIを使い、くり返しも多く、自分で決められる立場です。自動化がいちばん効きやすいタイプです。",body:"全部を一度に入れる必要はありません。お試しの「朝の1枚」から始めて、足していくこともできます。自動化には、Claudeの有料プラン（Pro・月3,000円ほど）が別に要ります。仕組みはいま準備中で、できたらLINEでお知らせします。",books:null,rung:3,steps:["取説（1,980円）で、全体と安全な使い方をつかむ","お試し（2,980円）か、よく使う3つを組んだ3つセット（14,800円）から入る","全部まとめて入れたくなったら、全部セット（29,800円）"]}
+};
+function bookOrder(q5){
+  const m={0:[3,4,1],1:[0,6,1],2:[1,2,6],3:[5,7,0],4:[0,6,7]};
+  return m[q5]??[0,1,3];
+}
+function result(){
+  $("#bar").style.width="100%";
+  const t=judge(),d=T[t],q5=A[4];
+  const pr=PROMPTS[[0,1,2,3,4][q5]??4];
+  const bs=d.books||bookOrder(q5);
+  const ladder=[["無料","診断と、今日の頼み方1つ"],["980円〜","Claudeの使い方ガイド（note・Brainの記事）"],["1,980円","Claude Codeの取説（完全解説）"],["2,980円〜","自動化（お試し・3つセット・全部）"]];
+  $("#quiz").classList.add("hidden");
+  const r=$("#result");r.classList.remove("hidden");scrollTo(0,0);
+  r.innerHTML=`
+  <div class="type-head"><img src="img/${d.img}.webp" alt="そろばんロボ"><div><span class="tag">あなたの結果</span><h1 style="margin-top:6px">${d.name}</h1></div></div>
+  <div class="card stack"><p><b>${d.lead}</b></p><p>${d.body}</p>
+  ${A[5]===2?`<p class="small">お客さまの個人情報を貼らないと進まない仕事では、自分の段取りや社内のメモだけが対象です。</p>`:""}</div>
+
+  <div class="gold stack">
+    <span class="tag" style="background:var(--card)">今日すぐ試せる・無料</span>
+    <h2>まず、この頼み方を1つだけ試してください。</h2>
+    <p>あなたが「時間を取られる」と答えた作業に合わせました。Claudeでも、ほかのAIでも、無料のままで試せます。</p>
+    <h3>${pr.k}の頼み方</h3>
+    <div class="prompt" id="pt">${pr.t}</div>
+    <button class="btn sub copy" id="cp">この頼み方をコピーする</button>
+    <p class="small">【 】の中だけ、自分の文章に入れ替えてください。お金・契約・個人情報の判断は、AIに任せず自分で決めます。</p>
+  </div>
+
+  ${d.steps?`<div class="card stack"><h2>あなたの進め方</h2><ol class="steps">${d.steps.map(s=>`<li><span>${s}</span></li>`).join("")}</ol></div>`:""}
+
+  <div class="stack">
+    <h2>${t<=3?"もっと知りたくなったら":"使い方ガイドも、1本ずつ"}</h2>
+    <p>Claudeのふつうの使い方を、1本1テーマで書いた記事です。noteとBrainで読めます。読んで10〜20分で試せます。1本目は、まるごと無料です。</p>
+    <div class="books">${[0].concat(bs.filter(n=>n!==0)).map(n=>{const b=BOOKS[n];return `<div class="book${b[2]?" free":""}"><div class="p">${b[2]?"まるごと無料":"980円"}</div><b>${b[1]}</b></div>`}).join("")}</div>
+    <div class="where"><span>noteで読めます</span><span>Brainでも読めます</span></div>
+    <p class="small">有料の記事は、無料の冒頭を読んでから買えます。買ったあとの返金はできません。</p>
+  </div>
+
+  <div class="card stack">
+    <h2>階段は、どこで止まっても大丈夫です。</h2>
+    <div class="ladder">${ladder.map((l,k)=>`<div class="rung${k===d.rung?" now":""}"><span>${k===d.rung?"<b>いまのあなたはここ　</b>":""}${l[1]}</span><span class="price">${l[0]}</span></div>`).join("")}</div>
+    ${d.ladderNote?`<p>${d.ladderNote}</p>`:""}
+    <p class="small">上の段に進むときは、下の段で買った分を引きます。進まなくても、何も起きません。自動化は申込の翌日から8日以内なら、理由を聞かずに全額お返しします。</p>
+  </div>
+
+  <div class="soft stack" style="text-align:center">
+    <p><b>結果ごとの使い方ガイドの一覧と、新しい頼み方を、LINEでお届けします。</b><br>登録しなくても、結果はこの画面で見られます。</p>
+    <a class="btn main wide" href="#" id="line">LINEで友だち追加して、一覧を受け取る</a>
+    <p class="small">ボタンを押すとLINEが開きます。友だち追加のあと、届くメッセージから一覧を受け取れます。</p>
+  </div>
+  <p style="text-align:center"><button class="link" id="again">もう一度、診断する</button></p>`;
+  $("#cp").onclick=()=>{navigator.clipboard?.writeText($("#pt").textContent).then(()=>{$("#cp").textContent="コピーしました"}).catch(()=>{$("#cp").textContent="長押しで選んでコピーしてください"})};
+  $("#again").onclick=()=>{A.length=0;i=0;r.classList.add("hidden");$("#start").classList.remove("hidden");scrollTo(0,0)};
+  if(window.track)track("quiz_done",{type:t});
+}
+</script>
+</body>
+</html>

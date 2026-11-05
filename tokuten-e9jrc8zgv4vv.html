@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ご購入ありがとうございます｜購入者のページ</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#0E7C86; --deep:#0A5A62; --ink:#1C3236; --ink2:#4A6468;
+  --soft:#EEF6F7; --line:#D5E4E6; --gold:#A87A1F; --goldfill:#D9A441; --goldbg:#FBF4E3;
+  --bg:#F7FBFB; --card:#fff; --onteal:#fff; --line-green:#06C755;
+  --round:"BIZ UDPGothic","Hiragino Sans",sans-serif;
+  --head:"Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --teal:#4FB8C1; --deep:#7FD0D7; --ink:#E6F1F2; --ink2:#A9C2C5; --soft:#16292C; --line:#2A4246;
+  --gold:#E2B85A; --goldfill:#E2B85A; --goldbg:#2B2416; --bg:#0F1D1F; --card:#14272A; --onteal:#0F1D1F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --teal:#4FB8C1; --deep:#7FD0D7; --ink:#E6F1F2; --ink2:#A9C2C5; --soft:#16292C; --line:#2A4246;
+  --gold:#E2B85A; --goldfill:#E2B85A; --goldbg:#2B2416; --bg:#0F1D1F; --card:#14272A; --onteal:#0F1D1F; color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--round);font-size:18px;font-weight:400;line-height:1.9;letter-spacing:.02em}
+h1,h2,h3{font-family:var(--head);line-height:1.45}
+h1{font-size:clamp(26px,6vw,38px);color:var(--deep);font-weight:900}
+h2{font-size:clamp(22px,4.6vw,28px);color:var(--deep);font-weight:900}
+h3{font-size:20px;color:var(--deep);font-weight:900}
+a{color:var(--teal);text-underline-offset:3px}
+.wrap{max-width:760px;margin:0 auto;padding:28px 16px 64px}
+.tag{display:inline-block;font-size:16px;font-weight:700;color:var(--gold);background:var(--goldbg);border-radius:999px;padding:2px 14px}
+.small{font-size:16px;color:var(--ink2)}
+.card{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:22px}
+.soft{background:var(--soft);border-radius:22px;padding:20px 22px}
+.gold{background:var(--goldbg);border-radius:22px;padding:20px 22px}
+.stack>*+*{margin-top:16px}
+section{margin-top:48px}
+section>h2{display:flex;gap:10px;align-items:center}
+section>h2 .no{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--teal);color:var(--onteal);font-size:19px}
+ul.dots{list-style:none;display:grid;gap:6px}
+ul.dots li{position:relative;padding-left:1.2em}
+ul.dots li::before{content:"";position:absolute;left:.2em;top:.75em;width:8px;height:8px;border-radius:50%;background:var(--goldfill)}
+.steps{display:grid;gap:12px;counter-reset:s}
+.steps li{list-style:none;display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start}
+.steps li::before{counter-increment:s;content:counter(s);width:40px;height:40px;border-radius:50%;background:var(--teal);color:var(--onteal);display:grid;place-items:center;font-weight:900;font-family:var(--head)}
+.fill{display:inline-block;font-weight:700;color:var(--gold);background:var(--goldbg);border:1px dashed var(--goldfill);border-radius:10px;padding:0 10px}
+/* 割引コードの枠 */
+.code{border:3px solid var(--goldfill);background:var(--goldbg);border-radius:24px;padding:22px;text-align:center}
+.code .label{font-family:var(--head);font-weight:900;color:var(--gold);font-size:18px}
+.code .val{display:block;margin:10px auto 0;font-family:var(--head);font-weight:900;font-size:clamp(22px,6vw,30px);color:var(--ink);background:var(--card);border:2px dashed var(--goldfill);border-radius:16px;padding:10px 16px;word-break:break-all}
+.copy{margin-top:14px;font:inherit;font-weight:700;font-size:17px;color:var(--deep);background:var(--card);border:2px solid var(--teal);border-radius:999px;padding:8px 22px;cursor:pointer;min-height:48px}
+.copy:focus-visible,.btn-line:focus-visible{outline:3px solid var(--goldfill);outline-offset:3px}
+/* 準備中のメニュー */
+.menu{list-style:none;display:grid;gap:10px}
+.menu li{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:12px 16px}
+.menu li.pick{border-color:var(--teal)}
+.menu b{color:var(--deep)}
+.menu .yen{flex:none;font-family:var(--head);font-weight:900;color:var(--deep);font-size:20px}
+.pickmark{display:inline-block;font-size:14px;font-weight:700;color:var(--onteal);background:var(--teal);border-radius:999px;padding:0 10px;margin-left:6px;vertical-align:2px}
+.soon{display:inline-block;font-size:15px;font-weight:700;color:var(--deep);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:0 12px}
+/* LINEのボタン */
+.btn-line{display:block;text-align:center;text-decoration:none;background:#06C755;color:#fff;font-family:var(--head);font-weight:900;font-size:20px;border-radius:999px;padding:16px 20px;box-shadow:0 6px 0 #04913E;min-height:56px}
+.btn-line small{display:block;font-family:var(--round);font-weight:700;font-size:15px;opacity:.95}
+.btn-line:active{transform:translateY(3px);box-shadow:0 3px 0 #04913E}
+/* よくある質問へのカード */
+.linkcard{display:flex;gap:14px;align-items:center;text-decoration:none;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:22px;padding:18px 20px}
+.linkcard:hover{border-color:var(--teal)}
+.linkcard .ic{flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:var(--soft);color:var(--teal);font-family:var(--head);font-weight:900;font-size:26px}
+.linkcard b{display:block;color:var(--deep);font-family:var(--head);font-weight:900;font-size:19px}
+.linkcard .arrow{margin-left:auto;flex:none;color:var(--teal);font-weight:900;font-size:22px}
+footer{margin-top:56px;padding-top:24px;border-top:2px solid var(--line)}
+footer p+p{margin-top:8px}
+@media print{html:root:not(#x){--teal:#0E7C86;--deep:#0A5A62;--ink:#1C3236;--ink2:#4A6468;--soft:#EEF6F7;--line:#D5E4E6;--gold:#A87A1F;--goldfill:#D9A441;--goldbg:#FBF4E3;--bg:#fff;--card:#fff;--onteal:#fff;color-scheme:light}body{font-size:12pt;background:#fff;color:#000}.copy,.btn-line{display:none}section{break-inside:avoid-page}.code,.card,.menu li,.linkcard{border-color:#999}}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<header class="stack">
+  <span class="tag">購入者のページ</span>
+  <h1>ご購入、<br>ありがとうございます。</h1>
+  <p>使い方ガイドを手に取ってくださって、本当にうれしいです。<br>
+  このページは、買ってくださった方だけにお知らせしているページです。<br>
+  ここにあるのは、割引コードと、これからのお知らせの受け取り方と、頼み方を手元に残すコツの3つです。</p>
+  <p class="small">このページのアドレスは、ほかの人には送らないでください。</p>
+</header>
+
+<!-- 1 割引コード -->
+<section id="code">
+  <h2><span class="no">1</span>割引コード</h2>
+  <div class="code stack" style="margin-top:16px">
+    <p class="label">あなたの割引コード</p>
+    <span class="val" id="codeval">【森川さんが決める】</span>
+    <button type="button" class="copy" id="copybtn">コードをコピーする</button>
+  </div>
+  <ul class="dots small" style="margin-top:14px">
+    <li>使える商品：<span class="fill">【森川さんが決める】</span></li>
+    <li>使える期限：<span class="fill">【森川さんが決める】</span></li>
+    <li>使い方：自動化メニューの申込ページで、このコードを入れます（申込ページは準備中です）。</li>
+  </ul>
+</section>
+
+<!-- 2 自動化のお知らせ -->
+<section id="jidoka">
+  <h2><span class="no">2</span>自動化メニューは準備中です</h2>
+  <p style="margin-top:12px">決めた時間に AI が自分で動いて、頼まなくても結果が手元に届く形。<br>
+  それが「自動化」です。<br>
+  いま、準備を進めています。<br>
+  できたら、お知らせします。</p>
+
+  <ul class="menu" style="margin-top:16px" aria-label="準備中のメニュー">
+    <li><span><b>お試し</b><br><span class="small">朝の1枚が、毎朝届く形</span></span><span class="yen">2,980円</span></li>
+    <li class="pick"><span><b>3つセット</b><span class="pickmark">おすすめ</span><br><span class="small">決まった組み合わせの3つ</span></span><span class="yen">14,800円</span></li>
+    <li><span><b>全部</b><br><span class="small">用意したものすべて</span></span><span class="yen">29,800円</span></li>
+  </ul>
+  <p class="small" style="margin-top:10px"><span class="soon">準備中</span>　まだ申し込みはできません。値段は予定です。<br>
+  自動化には、パソコンと、Claude の有料プランが要ります。<br>
+  Claude の月額は、この値段とは別にかかります。</p>
+
+  <div class="soft stack" style="margin-top:20px">
+    <h3>できたときに、お知らせを受け取る</h3>
+    <a class="btn-line" href="#" id="linebtn">LINEでお知らせを受け取る<small>LINEが開いたら、そのまま「送信」を押してください</small></a>
+    <p class="small">送るのは、決まった1行だけです。<br>
+    お名前やメールアドレスは要りません。<br>
+    受け取らなくても、使い方ガイドはこれまでどおり読めます。<br>
+    いつでもブロック・削除できます。</p>
+    <p class="small"><span class="fill">【要確認：どの LINE 公式アカウントで受け取るかは未決定。決まったらボタンのリンクを入れる】</span></p>
+  </div>
+</section>
+
+<!-- 3 頼み方を保存するコツ -->
+<section id="hozon">
+  <h2><span class="no">3</span>「頼み方」をスマホに保存するコツ</h2>
+  <p style="margin-top:12px">毎回、記事を開いて頼み方を探すのは、面倒ですよね。<br>
+  慣れてくると、いちばん効くのは「保存して、貼るだけ」の形です。</p>
+  <div class="card stack" style="margin-top:16px">
+    <ol class="steps">
+      <li><span>使い方ガイドの「頼み方」を、指で長押しして、全部を選んでコピーします。</span></li>
+      <li><span>スマホのメモのアプリで、新しいメモを作ります。<br>1行目に「頼み方：今日の1枚」のように、名前を書きます。</span></li>
+      <li><span>2行目から、コピーした頼み方を貼って、保存します。</span></li>
+      <li><span>使うときは、そのメモを開いて全部コピーし、Claude に貼ります。<br>書き換えるのは【 】のところだけです。</span></li>
+    </ol>
+  </div>
+  <ul class="dots" style="margin-top:14px">
+    <li>1つのメモに、頼み方は1つだけ。迷わずに選べます。</li>
+    <li>よく使うメモは、いちばん上に固定できるアプリが多いです。</li>
+    <li>うまくいった直し方の一言も、同じメモの下に書き足しておくと、次から楽になります。</li>
+    <li>メモには、お客さまの名前や電話番号、カードの番号は書かないでください。</li>
+  </ul>
+</section>
+
+<!-- 4 よくある質問 -->
+<section id="faq">
+  <h2><span class="no">4</span>困ったときは</h2>
+  <p style="margin-top:12px">うまくいかないときの直し方を、質問の形でまとめています。</p>
+  <a class="linkcard" href="faq.html" style="margin-top:16px">
+    <span class="ic" aria-hidden="true">？</span>
+    <span><b>よくある質問</b><span class="small">止まる・長い・合計が合わない・返金のことなど</span></span>
+    <span class="arrow" aria-hidden="true">→</span>
+  </a>
+  <p class="small" style="margin-top:10px">一人ずつへのお返事はしていません。<br>
+  記事が開けない・表示がおかしいときだけ、LINE かメールでお知らせください。</p>
+</section>
+
+<footer class="small">
+  <p>この使い方ガイドとページは、森川が個人で書いたもので、Claude（Anthropic 社）の公式のものではありません。</p>
+  <p>画面の写真は2026年11月時点のものです。AI の答えはまちがうことがあります。お金・契約・個人情報の判断は、ご自分で行ってください。</p>
+  <p><a href="legal.html">特定商取引法の表示・返金の条件・プライバシーポリシー</a></p>
+</footer>
+
+</main>
+<script>
+(function(){
+  var b=document.getElementById('copybtn'),v=document.getElementById('codeval');
+  if(!b||!v)return;
+  b.addEventListener('click',function(){
+    var t=v.textContent.trim();
+    function done(){b.textContent='コピーしました';setTimeout(function(){b.textContent='コードをコピーする'},2000)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){b.textContent='長押しでコピーしてください'})}
+    else{b.textContent='長押しでコピーしてください'}
+  });
+})();
+</script>
+</body>
+</html>

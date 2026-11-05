@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>よくある質問｜Claudeの使い方ガイド・AIの使い方診断</title>
+<meta name="description" content="Claudeの使い方ガイドで、うまくいかないときの直し方と、返金・個人情報・Claudeの月額についての、よくある質問です。">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#0E7C86; --deep:#0A5A62; --ink:#1C3236; --ink2:#4A6468;
+  --soft:#EEF6F7; --line:#D5E4E6; --gold:#A87A1F; --goldfill:#D9A441; --goldbg:#FBF4E3;
+  --bg:#F7FBFB; --card:#fff; --onteal:#fff; --line-green:#06C755;
+  --round:"BIZ UDPGothic","Hiragino Sans",sans-serif;
+  --head:"Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --teal:#4FB8C1; --deep:#7FD0D7; --ink:#E6F1F2; --ink2:#A9C2C5; --soft:#16292C; --line:#2A4246;
+  --gold:#E2B85A; --goldfill:#E2B85A; --goldbg:#2B2416; --bg:#0F1D1F; --card:#14272A; --onteal:#0F1D1F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --teal:#4FB8C1; --deep:#7FD0D7; --ink:#E6F1F2; --ink2:#A9C2C5; --soft:#16292C; --line:#2A4246;
+  --gold:#E2B85A; --goldfill:#E2B85A; --goldbg:#2B2416; --bg:#0F1D1F; --card:#14272A; --onteal:#0F1D1F; color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--round);font-size:18px;font-weight:400;line-height:1.9;letter-spacing:.02em}
+h1,h2,h3{font-family:var(--head);line-height:1.45}
+h1{font-size:clamp(26px,6vw,38px);color:var(--deep);font-weight:900}
+h2{font-size:clamp(22px,4.6vw,28px);color:var(--deep);font-weight:900}
+h3{font-size:19px;color:var(--deep);font-weight:900}
+a{color:var(--teal);text-underline-offset:3px}
+.wrap{max-width:760px;margin:0 auto;padding:28px 16px 64px}
+.tag{display:inline-block;font-size:16px;font-weight:700;color:var(--gold);background:var(--goldbg);border-radius:999px;padding:2px 14px}
+.small{font-size:16px;color:var(--ink2)}
+.soft{background:var(--soft);border-radius:22px;padding:20px 22px}
+.stack>*+*{margin-top:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips a{background:var(--soft);color:var(--deep);border-radius:999px;padding:6px 14px;font-weight:700;font-size:16px;text-decoration:none;border:1px solid var(--line)}
+.chips a:hover{border-color:var(--teal)}
+.fill{display:inline-block;font-weight:700;color:var(--gold);background:var(--goldbg);border:1px dashed var(--goldfill);border-radius:10px;padding:0 10px}
+section{scroll-margin-top:16px;margin-top:44px}
+section>h2{display:flex;gap:10px;align-items:center;margin-bottom:14px}
+section>h2 .no{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--teal);color:var(--onteal);font-size:19px}
+/* 質問と答え */
+.qa{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:18px 20px;scroll-margin-top:16px}
+.qa+.qa{margin-top:12px}
+.qa h3{display:flex;gap:10px;align-items:flex-start}
+.qa h3::before{content:"Q";flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--teal);color:var(--onteal);font-size:16px;margin-top:1px}
+.qa p{margin-top:8px;padding-left:40px}
+.qa .say{display:inline;color:var(--deep);font-weight:700;background:linear-gradient(transparent 62%,var(--goldbg) 62%)}
+.qa .say::before{content:"「"}.qa .say::after{content:"」"}
+/* さがす */
+.find{display:flex;gap:8px;align-items:center}
+.find input{flex:1;min-width:0;font:inherit;font-size:18px;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:999px;padding:10px 18px;min-height:48px}
+.find input:focus{outline:none;border-color:var(--teal)}
+#none{display:none}
+.last{margin-top:40px;text-align:center;font-family:var(--head);font-weight:900;color:var(--deep);font-size:19px}
+footer{margin-top:40px;padding-top:24px;border-top:2px solid var(--line)}
+footer p+p{margin-top:8px}
+.top{display:inline-block;margin-top:18px;font-weight:700}
+@media (max-width:420px){.qa p{padding-left:0}}
+@media print{html:root:not(#x){--teal:#0E7C86;--deep:#0A5A62;--ink:#1C3236;--ink2:#4A6468;--soft:#EEF6F7;--line:#D5E4E6;--gold:#A87A1F;--goldfill:#D9A441;--goldbg:#FBF4E3;--bg:#fff;--card:#fff;--onteal:#fff;color-scheme:light}body{font-size:12pt;background:#fff;color:#000}.chips,.find,.top{display:none}.qa{break-inside:avoid;border-color:#999}.qa[hidden]{display:block!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<header class="stack">
+  <span class="tag">Claudeの使い方ガイド・AIの使い方診断</span>
+  <h1>よくある質問</h1>
+  <p>使い方ガイドで、うまくいかなかったときの直し方と、買うとき・返金・安全のことを、質問の形でまとめました。<br>
+  気になる言葉で、さがすこともできます。</p>
+  <div class="find" role="search">
+    <input type="search" id="q" placeholder="例：止まる、合計、返金" aria-label="質問をさがす">
+  </div>
+  <nav class="chips" aria-label="このページの目次">
+    <a href="#tsukau">使っていて困ったとき</a>
+    <a href="#kau">買う・返金</a>
+    <a href="#anshin">安全のこと</a>
+  </nav>
+</header>
+
+<!-- 1 使っていて困ったとき -->
+<section id="tsukau">
+  <h2><span class="no">1</span>使っていて困ったとき</h2>
+
+  <div class="qa" id="q1">
+    <h3>返事が止まる、または「上限」と出たときは？</h3>
+    <p>使える量の上限に当たっていることがあります。<br>
+    少し時間をおいてから、新しいチャットでやり直してください。<br>
+    写真や長い文は、1回に送る量を減らすと止まりにくくなります。</p>
+  </div>
+
+  <div class="qa" id="q2">
+    <h3>長い文字起こしを貼ると、途中で止まるのはなぜ？</h3>
+    <p>1時間ぶんの文字は、かなり長いです。<br>
+    前半と後半に分けて、1回目の最後に<span class="say">まだまとめないでください。続きを貼ります</span>と書き足します。<br>
+    2回目の最後に<span class="say">ここまでです。全部を読んでまとめてください</span>と書きます。</p>
+  </div>
+
+  <div class="qa" id="q3">
+    <h3>書いていないこと・話していないことが入っているときは？</h3>
+    <p>同じチャットで<span class="say">私が書いていないものは消してください。消したものを一覧で教えてください</span>と返します。<br>
+    一覧が出たら、自分でも本当に言っていないか確かめてください。<br>
+    それでも残るときは、新しいチャットで最初からやり直す方が早いです。</p>
+  </div>
+
+  <div class="qa" id="q4">
+    <h3>答えが長くて、スマホで読みにくいときは？</h3>
+    <p><span class="say">いちばん先にやること3つと、時間の決まった予定だけ残して、あとは消してください</span>と返します。<br>
+    記事の下書きなら<span class="say">全体を1,500字くらいにしてください</span>のように、字数で伝えます。</p>
+  </div>
+
+  <div class="qa" id="q5">
+    <h3>順番や分け方が、自分の感覚と違うときは？</h3>
+    <p>AI は、あなたの事情を全部は知りません。<br>
+    <span class="say">Aさんの返事は明日でいい。先方が今週休みなので</span>のように、理由を一言で返すと直してくれます。<br>
+    次からは、その一言を頼み方に書き足しておくと外れにくくなります。</p>
+  </div>
+
+  <div class="qa" id="q6">
+    <h3>毎回、頼み方を探すのが面倒なときは？</h3>
+    <p>頼み方をまるごと、スマホのメモに1つ保存しておきます。<br>
+    使うときはそれをコピーして、【 】のところだけ書き換えます。<br>
+    慣れてくると、この「保存して貼るだけ」がいちばん効きます。</p>
+  </div>
+
+  <div class="qa" id="q7">
+    <h3>まとめで、決まっていないことが「決めたこと」に入っているときは？</h3>
+    <p><span class="say">はっきり決まったと言える発言がないものを、まだ決まっていないことに移してください。移したものは一覧で教えてください</span>と返します。<br>
+    期限が勝手に入っているときは<span class="say">私が言っていない期限は消してください</span>と返します。</p>
+  </div>
+
+  <div class="qa" id="q8">
+    <h3>誰が言ったかが、まざってしまうときは？</h3>
+    <p>文字起こしの話し手が「話者1」「話者2」になっていることがあります。<br>
+    貼る前に、置き換えの機能で「Aさん」「私」に直しておくと、まざりにくくなります。</p>
+  </div>
+
+  <div class="qa" id="q9">
+    <h3>記事の下書きが、なんだか AI っぽいときは？</h3>
+    <p><span class="say">『〜と言えるでしょう』『まとめると』を使わずに、話し言葉のやわらかさを残して書き直してください</span>と返します。<br>
+    見出しが説明っぽいときは<span class="say">見出しを、話の中に出てきた言葉か場面から、つけ直してください</span>と返します。</p>
+  </div>
+
+  <div class="qa" id="q10">
+    <h3>聞き間違いの言葉が、そのまま入っているときは？</h3>
+    <p>【？】がついているところを探して、自分で正しい言葉に直します。<br>
+    数が多いときは<span class="say">【？】のところを一覧にしてください。前後の文も一緒に</span>と頼みます。</p>
+  </div>
+
+  <div class="qa" id="q11">
+    <h3>レシートの合計と、表の合計が合わないときは？</h3>
+    <p><span class="say">合計が合わない理由を探してください。読み間違いの候補の行を挙げてください</span>と返します。<br>
+    8と3、1と7、6と0は、とくに間違えやすい数字です。<br>
+    最後は、自分の目でレシートと見比べてください。</p>
+  </div>
+
+  <div class="qa" id="q12">
+    <h3>レシートの写真が読めないと言われたときは？</h3>
+    <p>撮り直しが、いちばんの近道です。<br>
+    明るい場所で、真上から、1枚に1枚だけ写します。<br>
+    長いレシートは、上下に分けて撮ってください。</p>
+  </div>
+</section>
+
+<!-- 2 買う・返金 -->
+<section id="kau">
+  <h2><span class="no">2</span>買う・返金</h2>
+
+  <div class="qa" id="q13">
+    <h3>買う前に、中身を確かめられますか？</h3>
+    <p>はい。どの記事も、はじめの部分は無料で読めます。<br>
+    目次と「この記事でできること」も、無料の部分に置いています。<br>
+    自分に合いそうかを確かめてから買ってください。</p>
+  </div>
+
+  <div class="qa" id="q14">
+    <h3>note・Brain で買った記事は、返金できますか？</h3>
+    <p>記事は読めるものなので、購入したあとの返金はしていません。<br>
+    note・Brain の決まりで返金が行われる場合は、その決まりに従います。</p>
+  </div>
+
+  <div class="qa" id="q15">
+    <h3>自動化メニューは、返金できますか？</h3>
+    <p>お申込みの翌日から数えて8日以内なら、理由を問わず全額お返しします。<br>
+    LINE かメールで「返金希望」と、お申込みのときのお名前を送ってください。<br>
+    自動化メニューは、いまは準備中です。</p>
+  </div>
+
+  <div class="qa" id="q16">
+    <h3>Claude の月額は、値段に入っていますか？</h3>
+    <p>入っていません。Claude を作っている会社へ、別にお支払いいただくものです。<br>
+    目安は月3,000円ほどです（有料プランの Pro・2026年11月時点）。<br>
+    この月額は、自動化メニューの返金にも入りません。</p>
+  </div>
+
+  <div class="qa" id="q17">
+    <h3>記事が開けない・表示がおかしいときは？</h3>
+    <p>LINE かメールでお知らせください。<br>
+    直し方をご案内します。</p>
+  </div>
+</section>
+
+<!-- 3 安全のこと -->
+<section id="anshin">
+  <h2><span class="no">3</span>安全のこと</h2>
+
+  <div class="qa" id="q18">
+    <h3>お客さまの名前や電話番号を、AI に入れてもいいですか？</h3>
+    <p>入れないでください。<br>
+    「Aさん」「B社」のような仮の呼び名で、十分に伝わります。<br>
+    レシートの写真も、カードの番号・会員番号・名前を隠してから撮ってください。</p>
+  </div>
+
+  <div class="qa" id="q19">
+    <h3>AI の答えを、そのまま使って大丈夫ですか？</h3>
+    <p>AI の答えは、まちがうことがあります。<br>
+    金額・日付・条件は、必ず元の書類やメールで確かめてください。<br>
+    お金と契約の判断は、AI に任せず、ご自分で決めてください。</p>
+  </div>
+
+  <div class="qa" id="q20">
+    <h3>質問を送ったら、答えてもらえますか？</h3>
+    <p>一人ずつへのお返事はしていません。<br>
+    このページと、各ガイドの「うまくいかないときの直し方」の章をご覧ください。<br>
+    届いた声をもとに、このページに質問を足していきます。</p>
+  </div>
+</section>
+
+<p class="soft small" id="none" role="status">その言葉の質問は、まだありません。上の目次から探してみてください。</p>
+
+<p class="last">ここにない質問は、週に1回まとめて足します。</p>
+
+<footer class="small">
+  <p>このページは、森川が個人で書いたもので、Claude（Anthropic 社）の公式のものではありません。画面の写真は2026年11月時点のものです。AI の答えはまちがうことがあります。お金・契約・個人情報の判断は、ご自分で行ってください。</p>
+  <p><a href="legal.html">特定商取引法の表示・返金の条件・プライバシーポリシー</a></p>
+  <p>最後に変えた日：<span class="fill">【公開の日を入れる】</span></p>
+  <a class="top" href="./">AIの使い方診断へもどる</a>
+</footer>
+
+</main>
+<script>
+(function(){
+  var q=document.getElementById('q'),items=[].slice.call(document.querySelectorAll('.qa')),secs=[].slice.call(document.querySelectorAll('section')),none=document.getElementById('none');
+  if(!q)return;
+  q.addEventListener('input',function(){
+    var w=q.value.trim(),hit=0;
+    items.forEach(function(el){var ok=!w||el.textContent.indexOf(w)>-1;el.hidden=!ok;if(ok)hit++});
+    secs.forEach(function(s){s.hidden=!!w&&!s.querySelector('.qa:not([hidden])')});
+    none.style.display=hit?'none':'block';
+  });
+})();
+</script>
+</body>
+</html>

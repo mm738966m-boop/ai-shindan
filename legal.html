@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>特定商取引法の表示・返金・プライバシー｜AIの使い方診断</title>
+<meta name="description" content="AIの使い方診断と、ガイド記事・自動化メニューの、特定商取引法に基づく表示・返金の条件・プライバシーポリシー・声の載せ方・非公式の表示をまとめたページです。">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#0E7C86; --deep:#0A5A62; --ink:#1C3236; --ink2:#4A6468;
+  --soft:#EEF6F7; --line:#D5E4E6; --gold:#A87A1F; --goldfill:#D9A441; --goldbg:#FBF4E3;
+  --bg:#F7FBFB; --card:#fff; --onteal:#fff; --line-green:#06C755;
+  --round:"BIZ UDPGothic","Hiragino Sans",sans-serif;
+  --head:"Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --teal:#4FB8C1; --deep:#7FD0D7; --ink:#E6F1F2; --ink2:#A9C2C5; --soft:#16292C; --line:#2A4246;
+  --gold:#E2B85A; --goldfill:#E2B85A; --goldbg:#2B2416; --bg:#0F1D1F; --card:#14272A; --onteal:#0F1D1F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --teal:#4FB8C1; --deep:#7FD0D7; --ink:#E6F1F2; --ink2:#A9C2C5; --soft:#16292C; --line:#2A4246;
+  --gold:#E2B85A; --goldfill:#E2B85A; --goldbg:#2B2416; --bg:#0F1D1F; --card:#14272A; --onteal:#0F1D1F; color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--round);font-size:18px;font-weight:400;line-height:1.9;letter-spacing:.02em}
+h1,h2,h3{font-family:var(--head);line-height:1.45}
+h1{font-size:clamp(26px,6vw,38px);color:var(--deep);font-weight:900}
+h2{font-size:clamp(22px,4.6vw,28px);color:var(--deep);font-weight:900}
+h3{font-size:20px;color:var(--deep);font-weight:900}
+a{color:var(--teal);text-underline-offset:3px}
+.wrap{max-width:760px;margin:0 auto;padding:28px 16px 64px}
+.tag{display:inline-block;font-size:16px;font-weight:700;color:var(--gold);background:var(--goldbg);border-radius:999px;padding:2px 14px}
+.small{font-size:16px;color:var(--ink2)}
+.card{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:22px}
+.soft{background:var(--soft);border-radius:22px;padding:20px 22px}
+.gold{background:var(--goldbg);border-radius:22px;padding:20px 22px}
+.stack>*+*{margin-top:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips a{background:var(--soft);color:var(--deep);border-radius:999px;padding:6px 14px;font-weight:700;font-size:16px;text-decoration:none;border:1px solid var(--line)}
+.chips a:hover{border-color:var(--teal)}
+section{scroll-margin-top:16px;margin-top:48px}
+section>h2{display:flex;gap:10px;align-items:center}
+section>h2 .no{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--teal);color:var(--onteal);font-size:19px}
+ul.dots{list-style:none;display:grid;gap:6px}
+ul.dots li{position:relative;padding-left:1.2em}
+ul.dots li::before{content:"";position:absolute;left:.2em;top:.75em;width:8px;height:8px;border-radius:50%;background:var(--goldfill)}
+.steps{display:grid;gap:12px;counter-reset:s}
+.steps li{list-style:none;display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start}
+.steps li::before{counter-increment:s;content:counter(s);width:40px;height:40px;border-radius:50%;background:var(--teal);color:var(--onteal);display:grid;place-items:center;font-weight:900;font-family:var(--head)}
+/* 特商法の表 */
+dl.law{background:var(--card);border:2px solid var(--line);border-radius:24px;overflow:hidden}
+dl.law>div{display:grid;grid-template-columns:200px 1fr;border-top:1px solid var(--line)}
+dl.law>div:first-child{border-top:0}
+dl.law dt{background:var(--soft);color:var(--deep);font-weight:700;padding:14px 16px}
+dl.law dd{padding:14px 16px}
+dl.law dd p+p{margin-top:6px}
+@media (max-width:600px){dl.law>div{grid-template-columns:1fr}dl.law dt{padding:10px 16px}dl.law dd{padding:10px 16px 14px}}
+.fill{display:inline-block;font-weight:700;color:var(--gold);background:var(--goldbg);border:1px dashed var(--goldfill);border-radius:10px;padding:0 10px}
+/* 返金の2つ */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.two .card h3{margin-bottom:6px}
+.badge{display:inline-block;font-family:var(--head);font-weight:900;font-size:17px;border-radius:999px;padding:2px 14px;margin-top:4px}
+.badge.ok{background:var(--line-green);color:#fff}
+.badge.free{background:var(--soft);color:var(--deep);border:1px solid var(--line)}
+.sum{display:flex;gap:10px;align-items:flex-start}
+.sum b{color:var(--deep)}
+.yes{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--teal);color:var(--onteal);font-weight:900;font-size:16px;margin-top:2px}
+.note-ui{font-size:16px;color:var(--ink2);border-left:4px solid var(--line);padding-left:12px}
+footer{margin-top:56px;padding-top:24px;border-top:2px solid var(--line)}
+footer p+p{margin-top:8px}
+.top{display:inline-block;margin-top:18px;font-weight:700}
+@media print{body{font-size:12pt;background:#fff;color:#000}.chips,.top{display:none}section{break-inside:avoid-page}}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<header class="stack">
+  <span class="tag">AIの使い方診断・ガイド・自動化メニュー</span>
+  <h1>売り方と、<br>情報の扱い方のこと</h1>
+  <p>このページには、法律で決まっている表示と、わたしたちの約束をまとめています。<br>
+  はじめに、いちばん大事なことを3つだけ書きます。</p>
+  <div class="soft stack">
+    <p class="sum"><span class="yes">1</span><span><b>診断の答えは保存しません。</b>お名前もメールアドレスも要りません。</span></p>
+    <p class="sum"><span class="yes">2</span><span><b>記事は、無料の部分で中身を確かめてから買えます。</b>自動化メニューは、8日以内なら全額お返しします。</span></p>
+    <p class="sum"><span class="yes">3</span><span><b>お問い合わせは LINE かメールで。</b>電話での受付はしていません。</span></p>
+  </div>
+  <nav class="chips" aria-label="このページの目次">
+    <a href="#tokusho">特定商取引法の表示</a>
+    <a href="#henkin">返金の条件</a>
+    <a href="#privacy">プライバシー</a>
+    <a href="#voice">声の載せ方</a>
+    <a href="#hikoushiki">公式ではないこと</a>
+  </nav>
+</header>
+
+<!-- 1 特商法 -->
+<section id="tokusho">
+  <h2><span class="no">1</span>特定商取引法に基づく表示</h2>
+  <p>インターネットで記事や動画を売るときに、法律で書くことが決まっている項目です。</p>
+  <dl class="law" style="margin-top:16px">
+    <div><dt>販売業者</dt><dd>fulfull（ふるふる）</dd></div>
+    <div><dt>氏名</dt><dd><span class="fill">【森川さんが入れる】</span></dd></div>
+    <div><dt>運営の責任者</dt><dd><span class="fill">【森川さんが入れる】</span></dd></div>
+    <div><dt>所在地など</dt><dd>
+      <p>所在地・電話番号は、ご請求があれば遅滞なくお知らせします。</p>
+      <p>ご希望の方は、下の「お問い合わせ」の LINE かメールでお知らせください。<span class="fill">【森川さんが入れる：例 3日以内】</span>にメールでお送りします。</p>
+    </dd></div>
+    <div><dt>お問い合わせ</dt><dd>
+      <p>LINE：<span class="fill">【森川さんが入れる：友だち追加のURL】</span></p>
+      <p>メール：<span class="fill">【森川さんが入れる：メールアドレス】</span></p>
+      <p class="small">お返事は<span class="fill">【森川さんが入れる：例 3日以内】</span>にします。</p>
+    </dd></div>
+    <div><dt>販売価格</dt><dd>
+      <p>各記事・各申込ページに、税込みの金額で表示しています。</p>
+      <p class="small">例：note・Brain の有料記事 980円／1,980円（税込み）</p>
+    </dd></div>
+    <div><dt>代金のほかにかかるお金</dt><dd>
+      <p>インターネットの通信料は、お客さまのご負担です。</p>
+      <p>自動化メニューでは、AI（Claude）の有料プラン（Pro 以上）の月額が別にかかります。Claude を作っている会社へのお支払いで、目安は月3,000円ほどです（2026年11月時点）。</p>
+    </dd></div>
+    <div><dt>支払いの方法</dt><dd>
+      <p>note・Brain の記事：各サイトで選べる方法</p>
+      <p>自動化メニュー：<span class="fill">【森川さんが入れる：例 クレジットカード】</span></p>
+    </dd></div>
+    <div><dt>支払いの時期</dt><dd>
+      <p>note・Brain の記事：各サイトの決まりによります。</p>
+      <p>自動化メニュー：お申込みのときにお支払いいただきます。カードの引き落としの日は、カード会社の決まりによります。</p>
+    </dd></div>
+    <div><dt>受け取れる時期</dt><dd>
+      <p>note・Brain の記事：お支払いが終わると、すぐに読めます。</p>
+      <p>自動化メニュー：お支払いが終わると、会員サイトの入り方をメールでお送りします。動画とキットは、毎週順番に公開されます。</p>
+    </dd></div>
+    <div><dt>返品・返金</dt><dd>
+      <p>note・Brain の記事：購入後の返金はありません（無料の部分で中身を確かめられます）。</p>
+      <p>自動化メニュー：お申込みの翌日から8日以内なら、理由を問わず全額お返しします。</p>
+      <p><a href="#henkin">くわしくは「返金の条件」へ</a></p>
+    </dd></div>
+    <div><dt>動作の環境</dt><dd>
+      <p>スマートフォン・パソコンのブラウザで見られます。</p>
+      <p>自動化メニューは、パソコンと Claude の有料プラン（Pro 以上）が要ります。</p>
+    </dd></div>
+    <div><dt>値段の決まり</dt><dd>
+      <p>先行版の値段は、売れた人数に応じて段階的に上がります。いまの値段は、申込ページに表示しています。</p>
+    </dd></div>
+  </dl>
+  <p class="small" style="margin-top:10px">note・Brain で買った記事は、各サイトの「特定商取引法に基づく表示」もあわせてご覧ください。</p>
+</section>
+
+<!-- 2 返金 -->
+<section id="henkin">
+  <h2><span class="no">2</span>返金の条件</h2>
+  <p>返金のしかたは、商品によって2つに分かれています。</p>
+  <div class="two" style="margin-top:16px">
+    <div class="card stack">
+      <h3>note・Brain の記事<br><span class="small">980円・1,980円</span></h3>
+      <span class="badge free">無料の部分で確かめてから買える</span>
+      <p>どの記事も、はじめの部分は無料で読めます。<br>目次と「この記事でできること」も、無料の部分に置いています。<br>自分に合いそうかを確かめてから買ってください。</p>
+      <p>記事は読めるものなので、購入したあとの返金はしていません。<br>note・Brain の決まりで返金が行われる場合は、その決まりに従います。</p>
+      <p class="small">記事が開けない・表示がおかしいときは、LINE かメールでお知らせください。直し方をご案内します。</p>
+    </div>
+    <div class="card stack">
+      <h3>自動化メニュー<br><span class="small">自前の会員サイト</span></h3>
+      <span class="badge ok">8日以内なら全額お返し</span>
+      <p>はじめての自動化でも安心して始められるように、8日間の返金の約束をつけています。<br>お申込みの翌日から数えて8日以内なら、理由を問わず、お支払いの全額をお返しします。</p>
+      <h3 style="font-size:18px">返金の受け方（2ステップ）</h3>
+      <ol class="steps">
+        <li><span>LINE かメールで「返金希望」と、お申込みのときのお名前を送ってください。</span></li>
+        <li><span>こちらで確認して、お支払いの方法に返金の手続きをします。</span></li>
+      </ol>
+      <ul class="dots small">
+        <li>理由を書く必要はありません。電話や書類も要りません。</li>
+        <li>返金の手続きをすると、会員サイトは見られなくなります。</li>
+        <li>お金が戻る日は、カード会社などによって変わります（目安：<span class="fill">【森川さんが入れる】</span>）。</li>
+        <li>Claude の月額は、Claude を作っている会社とのお約束なので、この返金には入りません。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 3 プライバシー -->
+<section id="privacy">
+  <h2><span class="no">3</span>プライバシーポリシー</h2>
+  <p>わたしたちは、みなさんの情報をできるだけ預からない作りにしています。<br>何を記録して、何を記録しないかを、そのまま書きます。</p>
+
+  <div class="card stack" style="margin-top:16px">
+    <h3>AIの使い方診断</h3>
+    <ul class="dots">
+      <li>診断の答えは、どこにも保存しません。画面の中だけで使い、結果を出したら終わりです。</li>
+      <li>お名前・メールアドレス・電話番号は、うかがいません。</li>
+      <li>登録しなくても、結果はその場で全部見られます。</li>
+    </ul>
+  </div>
+
+  <div class="card stack" style="margin-top:14px">
+    <h3>数える仕組み</h3>
+    <p>ページをよりよくするために、「どのボタンが何回押されたか」だけを数えています。</p>
+    <ul class="dots">
+      <li>例：「診断を始める」や LINE のボタンが、何回押されたか。</li>
+      <li>診断の答えの中身は送りません。</li>
+      <li>あなたが誰か分かる情報（お名前・メールアドレスなど）は送りません。</li>
+      <li>どの案内から来たか（例：Voicy の概要欄から）を、リンクに付けた印で数えることがあります。</li>
+      <li>数えた回数は、Google のサービス（Google Apps Script・スプレッドシート）に記録します。</li>
+    </ul>
+  </div>
+
+  <div class="card stack" style="margin-top:14px">
+    <h3>LINE 公式アカウント</h3>
+    <ul class="dots">
+      <li>友だち追加は、したい方だけで大丈夫です。しなくても、診断は最後まで使えます。</li>
+      <li>友だち追加すると、診断の結果タイプの名前のタグだけが付きます。答えの中身は送りません。</li>
+      <li>LINE の仕組みにより、わたしたちからは LINE の表示名とプロフィール画像が見えます。</li>
+      <li>いつでもブロック・削除できます。そのあとはメッセージは届きません。</li>
+    </ul>
+  </div>
+
+  <div class="card stack" style="margin-top:14px">
+    <h3>商品を買ったとき</h3>
+    <ul class="dots">
+      <li>note・Brain の記事：お支払いの情報やメールアドレスは、note・Brain が預かります。</li>
+      <li>自動化メニュー：お名前・メールアドレス・お支払いの情報をいただきます。使い道は、会員サイトのご案内・領収書・ご質問への返事・返金の手続きだけです。</li>
+      <li>カードの番号は決済の会社が預かり、わたしたちは見ません。</li>
+    </ul>
+  </div>
+
+  <div class="soft stack" style="margin-top:14px">
+    <h3>使っている外国のサービス</h3>
+    <p>まず安心していただきたいこと。<br>診断の答えや、あなたが誰か分かる情報を、下の会社に送る作りにはしていません。<br>Claude に、みなさんの個人の情報を入れることもしません。</p>
+    <ul class="dots">
+      <li>GitHub（アメリカの会社）：このページと診断ページを置いている場所</li>
+      <li>Google（アメリカの会社）：文字の形（フォント）の表示と、ボタンの回数の記録</li>
+      <li>Anthropic（アメリカの会社）：AI の Claude。ガイドや文章の下書きを作るときに使います</li>
+    </ul>
+    <p class="small">ふつうのホームページと同じように、ページを開いたときの通信の記録（IP アドレス・ブラウザの種類など）が、GitHub や Google の側に残ることがあります。これはわたしたちが集めているものではなく、各社の決まりで扱われます。</p>
+  </div>
+
+  <div class="card stack" style="margin-top:14px">
+    <h3>ほかに渡さないこと・見たい／消したいとき</h3>
+    <p>いただいた情報を、ご本人の同意なしに、ほかの会社や人に渡すことはしません（法律で求められたときを除きます）。</p>
+    <p>ご自分の情報を見たい・直したい・消したいときは、LINE かメールでご連絡ください。<br>電話での受付はしていません。</p>
+    <p>LINE：<span class="fill">【森川さんが入れる：友だち追加のURL】</span><br>メール：<span class="fill">【森川さんが入れる：メールアドレス】</span></p>
+    <p class="small">内容を変えたときは、このページでお知らせし、いちばん下の日付を直します。</p>
+  </div>
+</section>
+
+<!-- 4 声 -->
+<section id="voice">
+  <h2><span class="no">4</span>使った方の一言の載せ方</h2>
+  <p>使った方の一言を、ほかの人の参考として載せることがあります。<br>載せるのは、ご本人が「載せてOK」と答えてくださった一言だけです。</p>
+  <div class="gold stack" style="margin-top:16px">
+    <p class="sum"><span class="yes">1</span><span><b>お名前は出しません。</b>ニックネームか「40代・会社員の方」のような書き方を、ご本人が選べます。</span></p>
+    <p class="sum"><span class="yes">2</span><span><b>やめたくなったら、いつでも外します。</b>LINE で「声を外して」と送るだけで、理由は要りません。</span></p>
+    <p class="sum"><span class="yes">3</span><span><b>断っても、何も変わりません。</b>これまでどおり使えます。</span></p>
+  </div>
+  <div class="card stack" style="margin-top:14px">
+    <h3>載せる場所</h3>
+    <ul class="dots">
+      <li>AIの使い方診断のページ</li>
+      <li>note・Brain の記事の無料の部分</li>
+      <li>森川の Instagram・Threads・Voicy（文字で紹介する場合）</li>
+    </ul>
+    <h3>載せる中身・載せないもの</h3>
+    <ul class="dots">
+      <li>いただいた一言の文。読みやすさのため、意味を変えずに句読点や改行だけ整えることがあります。</li>
+      <li>画面の写真を載せるときは、お名前やお客さまの情報が写らないように隠し、載せる前にお見せします。</li>
+      <li>本名・顔写真・住んでいる場所・勤め先の名前は載せません。</li>
+    </ul>
+    <h3>謝礼について</h3>
+    <p>謝礼や割引などのお礼はありません。お礼をお渡しして書いていただいた声は、載せていません。</p>
+    <p class="small">外す日の目安：<span class="fill">【森川さんが入れる：例 7日以内】</span>。SNS などで、ほかの人がすでに保存・転載したものまでは消せないことがあります。</p>
+  </div>
+</section>
+
+<!-- 5 非公式 -->
+<section id="hikoushiki">
+  <h2><span class="no">5</span>公式ではないこと・AI の答えのこと</h2>
+  <div class="card stack" style="margin-top:16px">
+    <ul class="dots">
+      <li>このガイドと診断は、fulfull が作った非公式のものです。Anthropic 社・Claude の公式のものではありません。</li>
+      <li>画面の写真は、2026年11月時点のものです。AI の画面は変わることがあります。</li>
+      <li>AI の答えは、まちがうことがあります。お金・契約・個人情報のことは、AI の答えをそのまま使わず、最後はご自分で確かめて決めてください。</li>
+    </ul>
+  </div>
+</section>
+
+<footer class="small">
+  <p>運営：fulfull（ふるふる）／責任者：<span class="fill">【森川さんが入れる】</span></p>
+  <p>このページは、fulfull が作った非公式のガイドです。Anthropic 社・Claude の公式のものではありません。画面の写真は2026年11月時点のものです。AI の答えはまちがうことがあります。お金・契約・個人情報の判断は、ご自分で行ってください。</p>
+  <p>最後に変えた日：<span class="fill">【公開の日を入れる】</span></p>
+  <a class="top" href="./">AIの使い方診断へもどる</a>
+</footer>
+
+</main>
+</body>
+</html>
