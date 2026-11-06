@@ -72,6 +72,30 @@ ul.dots li::before{content:"";position:absolute;left:.2em;top:.75em;width:8px;he
 .linkcard .ic{flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:var(--soft);color:var(--teal);font-family:var(--head);font-weight:900;font-size:26px}
 .linkcard b{display:block;color:var(--deep);font-family:var(--head);font-weight:900;font-size:19px}
 .linkcard .arrow{margin-left:auto;flex:none;color:var(--teal);font-weight:900;font-size:22px}
+/* 特典②③ アコーディオン・ワンタップコピー */
+.acc details.art{background:var(--card);border:2px solid var(--line);border-radius:22px;overflow:hidden}
+.acc details.art[open]{border-color:var(--teal)}
+.acc summary{list-style:none;display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;font-family:var(--head);font-weight:900;font-size:19px;color:var(--deep);min-height:56px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary:focus-visible{outline:3px solid var(--goldfill);outline-offset:-3px}
+.acc .artno{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:var(--goldbg);color:var(--gold);font-size:18px}
+.acc .arttitle{flex:1;line-height:1.4;min-width:0;overflow-wrap:anywhere}
+.acc .chev{flex:none;color:var(--teal);font-size:16px;transition:transform .2s}
+.acc details[open] .chev{transform:rotate(180deg)}
+.acc .artbody{padding:4px 18px 20px;border-top:2px dashed var(--line)}
+.prompt{background:var(--soft);border-radius:18px;padding:16px}
+.prompt h3{font-size:19px;margin-bottom:10px}
+.prompt .ptext{font-family:var(--round);font-size:18px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;background:var(--card);border:2px dashed var(--goldfill);border-radius:16px;padding:14px 16px;margin:12px 0;color:var(--ink);max-width:100%}
+.copybig{display:block;width:100%;font:inherit;font-family:var(--head);font-weight:900;font-size:19px;color:#fff;background:var(--line-green);border:0;border-radius:999px;padding:14px 18px;cursor:pointer;min-height:56px;box-shadow:0 5px 0 #04913E}
+.copybig:active{transform:translateY(3px);box-shadow:0 2px 0 #04913E}
+.copybig:focus-visible{outline:3px solid var(--goldfill);outline-offset:3px}
+.copybig.done{background:var(--deep);color:var(--onteal);box-shadow:0 5px 0 var(--teal)}
+.exgroup h3{font-size:18px;margin-bottom:8px}
+.exgroup h3 .fill{font-size:18px;padding:2px 12px}
+.exlist{list-style:none;display:grid;gap:10px;counter-reset:e}
+.exlist li{position:relative;padding:10px 14px 10px 50px;background:var(--soft);border-radius:14px;line-height:1.7;overflow-wrap:anywhere}
+.exlist li::before{content:counter(e);counter-increment:e;position:absolute;left:12px;top:10px;width:28px;height:28px;border-radius:50%;background:var(--goldfill);color:#1C3236;font-family:var(--head);font-weight:900;font-size:15px;display:grid;place-items:center}
+@media (max-width:420px){.acc summary{padding:14px 14px;font-size:18px}.acc .artbody{padding:4px 12px 16px}.prompt{padding:12px}.prompt .ptext{font-size:17px;padding:12px}}
 footer{margin-top:56px;padding-top:24px;border-top:2px solid var(--line)}
 footer p+p{margin-top:8px}
 @media print{html:root:not(#x){--teal:#0E7C86;--deep:#0A5A62;--ink:#1C3236;--ink2:#4A6468;--soft:#EEF6F7;--line:#D5E4E6;--gold:#A87A1F;--goldfill:#D9A441;--goldbg:#FBF4E3;--bg:#fff;--card:#fff;--onteal:#fff;color-scheme:light}body{font-size:12pt;background:#fff;color:#000}.copy,.btn-line{display:none}section{break-inside:avoid-page}.code,.card,.menu li,.linkcard{border-color:#999}}
@@ -85,13 +109,16 @@ footer p+p{margin-top:8px}
   <h1>ご購入、<br>ありがとうございます。</h1>
   <p>使い方ガイドを手に取ってくださって、本当にうれしいです。<br>
   このページは、買ってくださった方だけにお知らせしているページです。<br>
-  ここにあるのは、割引コードと、これからのお知らせの受け取り方と、頼み方を手元に残すコツの3つです。</p>
+  ここにあるのは、購入者特典の3つ（割引コード・頼み方のワンタップコピー・【 】の書き換え例 追加10本）と、自動化のお知らせの受け取り方です。</p>
   <p class="small">このページのアドレスは、ほかの人には送らないでください。</p>
+  <img src="img/tokuten_box.jpg" alt="購入者特典3点" style="display:block;width:100%;max-width:520px;margin-left:auto;margin-right:auto;border-radius:16px;margin:18px 0 6px" loading="lazy">
 </header>
 
 <!-- 1 割引コード -->
 <section id="code">
   <h2><span class="no">1</span>割引コード</h2>
+  <img src="img/tokuten1.jpg" alt="特典① Claude Code 取説の割引コード" style="display:block;width:100%;border-radius:16px;margin:18px 0 6px" loading="lazy">
+  <p class="tag" style="margin-top:10px">特典①</p>
   <div class="code stack" style="margin-top:16px">
     <p class="label">あなたの割引コード</p>
     <span class="val" id="codeval">【森川さんが決める】</span>
@@ -104,9 +131,245 @@ footer p+p{margin-top:8px}
   </ul>
 </section>
 
-<!-- 2 自動化のお知らせ -->
+<!-- 2 特典② 頼み方のワンタップコピー -->
+<section id="prompts">
+  <h2><span class="no">2</span>頼み方のワンタップコピー</h2>
+  <img src="img/tokuten2.jpg" alt="特典② 頼み方のワンタップコピー" style="display:block;width:100%;border-radius:16px;margin:18px 0 6px" loading="lazy">
+  <p class="tag" style="margin-top:10px">特典②</p>
+  <p style="margin-top:12px">使い方ガイド3本の「頼み方」を、ここに全部そろえました。<br>
+  記事を開かなくても、ボタンを押すだけでコピーできます。<br>
+  コピーしたら、Claude に貼って、【 】のところだけ書き換えてください。</p>
+  <div class="acc stack" style="margin-top:16px">
+  <details class="art" open>
+    <summary><span class="artno">01</span><span class="arttitle">打ち合わせのまとめ</span><span class="chev" aria-hidden="true">▼</span></summary>
+    <div class="artbody stack">
+      <div class="prompt">
+        <h3>打ち合わせのまとめの頼み方</h3>
+        <button type="button" class="copybig" data-target="p01_1">この頼み方をコピーする</button>
+        <pre class="ptext" id="p01_1" tabindex="0">あなたは、打ち合わせのあとのまとめを手伝う係です。
+下に、打ち合わせの会話を文字にしたもの（またはメモ）を貼ります。
+これを読んで、次の4つに分けてください。
+
+1 決めたこと
+・その場で、はっきり「そうしましょう」「お願いします」と決まったことだけ。
+・誰が言ったかを（ ）で添える。
+・会話の時刻が分かれば、どの辺りで出たかも添える。
+
+2 宿題
+・「私」の分と、相手の分に分ける。
+・それぞれ「何を・いつまでに」。期限が出ていないものは「期限なし」と書く。
+
+3 次の連絡
+・誰から誰へ、いつまでに、何を送るか。
+
+4 まだ決まっていないこと
+・話には出たが、決まっていないこと。
+・「検討します」「いいですね」で終わったものは、ここに入れる。
+
+守ること
+・会話にないことを足さない。人・数字・日付を作らない。
+・決まったかどうか迷うものは、決めたことに入れず、「（要確認）」をつけて4に入れる。
+・私の提案を、相手が決めたように書かない。
+・1文ごとに改行。飾りの記号は使わない。
+
+打ち合わせの名前と日付：【打ち合わせの名前と日付】
+出た人：【出た人（仮の呼び名で）】
+
+会話：
+【文字にした会話、またはメモ】</pre>
+        <button type="button" class="copybig" data-target="p01_1">この頼み方をコピーする</button>
+      </div>
+      <div class="prompt">
+        <h3>相手への連絡の下書きを頼む（追加の頼み方）</h3>
+        <button type="button" class="copybig" data-target="p01_2">この頼み方をコピーする</button>
+        <pre class="ptext" id="p01_2" tabindex="0">上のまとめをもとに、【相手】への連絡の下書きを作ってください。
+・お礼を1行。
+・決めたことと、それぞれの宿題を短く。
+・まだ決まっていないことは「次回あらためて」と書く。
+・押しつけがましくしない。です・ます で、やわらかく。
+・全体で200字くらい。</pre>
+        <button type="button" class="copybig" data-target="p01_2">この頼み方をコピーする</button>
+      </div>
+    </div>
+  </details>
+  <details class="art">
+    <summary><span class="artno">02</span><span class="arttitle">話したことを記事に</span><span class="chev" aria-hidden="true">▼</span></summary>
+    <div class="artbody stack">
+      <div class="prompt">
+        <h3>記事の下書きの頼み方</h3>
+        <button type="button" class="copybig" data-target="p02_1">この頼み方をコピーする</button>
+        <pre class="ptext" id="p02_1" tabindex="0">あなたは、私の話を記事の下書きにする係です。
+下に、私が話したことを文字にしたものを貼ります。
+これを、私が書いた記事として読めるように並べ直してください。
+
+いちばん大事なこと
+・話の中にない人・数字・台詞・出来事は、書かない。作らない。
+・調べた情報や、ほかの人の例を足さない。
+・聞き間違いだと思う言葉は、直さずに【？】をつけて残す。
+
+書き方
+・1行目は見出しではなく、話の中で実際に出た一言から始める。
+・見出しを3〜5個。見出しは、話の中の場面や言葉からつける。「〜の方法」「〜する理由」のような説明の見出しは使わない。
+・見出しの行の頭には「■」をつける。
+・一人称は「【一人称】」。話し言葉のやわらかさは残す。
+・1文ごとに改行。1文は長くしすぎない。
+・「いかがでしたか」「まとめると」「ぜひ」は使わない。
+・最後は、きれいなまとめにしない。話の中の本音か、一言で終わる。
+・飾りの記号は使わない。
+
+載せる場所：【載せる場所】
+読む人：【読む人】
+
+話したこと：
+【話したことを文字にしたもの】</pre>
+        <button type="button" class="copybig" data-target="p02_1">この頼み方をコピーする</button>
+      </div>
+      <div class="prompt">
+        <h3>題名の案を出してもらう（追加の頼み方）</h3>
+        <button type="button" class="copybig" data-target="p02_2">この頼み方をコピーする</button>
+        <pre class="ptext" id="p02_2" tabindex="0">この下書きの題名の案を5つください。
+・30字くらいまで。
+・前半で何の話か分かるように。後半に、話の中の一言や、少し意外な言葉を入れる。
+・「〜を解説」「〜の方法」の形は使わない。
+・大げさにしない。話していない約束をしない。</pre>
+        <button type="button" class="copybig" data-target="p02_2">この頼み方をコピーする</button>
+      </div>
+    </div>
+  </details>
+  <details class="art">
+    <summary><span class="artno">03</span><span class="arttitle">レシートで家計の表</span><span class="chev" aria-hidden="true">▼</span></summary>
+    <div class="artbody stack">
+      <div class="prompt">
+        <h3>レシートを表にする頼み方</h3>
+        <button type="button" class="copybig" data-target="p03_1">この頼み方をコピーする</button>
+        <pre class="ptext" id="p03_1" tabindex="0">あなたは、家計の表づくりを手伝う係です。
+レシートの写真を送ります。
+写っている内容を、表にしてください。
+
+表の列
+日付／お店／品物／金額／分け方
+
+守ること
+・写真に写っていることだけを書く。読めないところを想像で埋めない。
+・読めない文字や数字は「？」にする。
+・金額は税込みで、円の数字だけ。値引きは、マイナスの行として残す。
+・分け方は、下の中から選ぶ。合うものがなければ「その他」。
+・レシートごとに、最後に「レシートの合計」と「表の合計」を書いて、合っているか一言そえる。
+・使いすぎかどうか、何を減らすか、などの意見は書かない。
+・表は、Googleスプレッドシートに貼れるように、列の間をタブで区切って出す。
+
+分け方：【分け方の名前】</pre>
+        <button type="button" class="copybig" data-target="p03_1">この頼み方をコピーする</button>
+      </div>
+      <div class="prompt">
+        <h3>月の終わりに合計を出してもらう（追加の頼み方）</h3>
+        <button type="button" class="copybig" data-target="p03_2">この頼み方をコピーする</button>
+        <pre class="ptext" id="p03_2" tabindex="0">下の表は、私の家の【何月】の出ていくお金です。
+分け方ごとの合計と、全部の合計を出してください。
+・表にない数字を足さない。
+・「？」がある行は、合計とは別に一覧にする。
+・使いすぎかどうか、何を減らすか、などの意見は書かない。</pre>
+        <button type="button" class="copybig" data-target="p03_2">この頼み方をコピーする</button>
+      </div>
+    </div>
+  </details>
+  </div>
+  <p class="small" style="margin-top:12px">「コピーしました」と出れば、できています。<br>
+  出ないときは、文の上を長押しして、全部を選んでコピーしてください。</p>
+</section>
+
+<!-- 3 特典③ 【 】の書き換え例 追加10本 -->
+<section id="examples">
+  <h2><span class="no">3</span>書き換え例　追加10本</h2>
+  <img src="img/tokuten3.jpg" alt="特典③ 書き換え例 追加10本" style="display:block;width:100%;border-radius:16px;margin:18px 0 6px" loading="lazy">
+  <p class="tag" style="margin-top:10px">特典③</p>
+  <p style="margin-top:12px">記事に載せた例とは別に、記事ごとに10本ずつ新しく書きました。<br>
+  自分の場面に近いものを見つけて、そのまま写すか、少し直して使ってください。<br>
+  人の名前は Aさん・B社 のような仮の呼び名のままで大丈夫です。</p>
+  <div class="acc stack" style="margin-top:16px">
+  <details class="art" open>
+    <summary><span class="artno">01</span><span class="arttitle">打ち合わせのまとめ</span><span class="chev" aria-hidden="true">▼</span></summary>
+    <div class="artbody stack">
+      <div class="exgroup"><h3><span class="fill">【打ち合わせの名前と日付】</span></h3>
+      <ol class="exlist" start="1">
+        <li>11月12日　Aさんと、ホームページの直しの打ち合わせ</li>
+        <li>11月14日　PTAの広報係の集まり</li>
+        <li>11月18日　B社さんと、来年のイベントの日程合わせ</li>
+      </ol></div>
+      <div class="exgroup"><h3><span class="fill">【出た人（仮の呼び名で）】</span></h3>
+      <ol class="exlist" start="4">
+        <li>私、Aさん（お店の店長）、Bさん（アルバイトのリーダー）</li>
+        <li>私、Cさん（司会）、Dさん（書記）、ほか5人</li>
+        <li>私、Aさん、Bさん（Aさんの上司。途中から参加）</li>
+      </ol></div>
+      <div class="exgroup"><h3><span class="fill">【文字にした会話、またはメモ】</span></h3>
+      <ol class="exlist" start="7">
+        <li>Aさんとホームページの直しの話。写真を3枚差し替えたい。写真は私が来週中に撮る。文章の直しはAさんが案を出す。公開日はまだ決めていない。</li>
+        <li>役員会。来月のお祭りの係を決めた。受付はCさん、片づけはDさんと私。買い出しの予算は、あとで会計に聞く。</li>
+      </ol></div>
+      <div class="exgroup"><h3><span class="fill">【相手】</span></h3>
+      <ol class="exlist" start="9">
+        <li>Aさん（打ち合わせに来られなかった人にも分かるように）</li>
+        <li>PTAの広報係のみなさん（メールで。日付と担当を見やすく）</li>
+      </ol></div>
+    </div>
+  </details>
+  <details class="art">
+    <summary><span class="artno">02</span><span class="arttitle">話したことを記事に</span><span class="chev" aria-hidden="true">▼</span></summary>
+    <div class="artbody stack">
+      <div class="exgroup"><h3><span class="fill">【一人称】</span></h3>
+      <ol class="exlist" start="1">
+        <li>自分</li>
+        <li>うち（お店の話をするとき）</li>
+      </ol></div>
+      <div class="exgroup"><h3><span class="fill">【載せる場所】</span></h3>
+      <ol class="exlist" start="3">
+        <li>自分のホームページのお知らせ欄。600字くらいで、短く</li>
+        <li>Instagramの長い文。500字くらいで、話し言葉のまま</li>
+        <li>メールマガジン。1,200字くらいで、読んでくれている人に話しかける形</li>
+      </ol></div>
+      <div class="exgroup"><h3><span class="fill">【読む人】</span></h3>
+      <ol class="exlist" start="6">
+        <li>これから教室に来ようか迷っている人</li>
+        <li>昔の同級生。久しぶりに近況を知らせたい相手</li>
+        <li>うちの商品を1回買ってくれて、2回目はまだの人</li>
+      </ol></div>
+      <div class="exgroup"><h3><span class="fill">【話したことを文字にしたもの】</span></h3>
+      <ol class="exlist" start="9">
+        <li>今日は失敗した話。先週、お客さんの名前を間違えて呼んでしまって。すぐ謝ったら笑ってくれたんだけど、帰りの車でずっと考えてた。名前って、その人を大事にしてるかどうかが出るんだなって。それから、来た人の名前をメモするようにしてます。</li>
+        <li>今日は看板の話。お店の看板を10年ぶりに変えました。前のは字が小さくて、通りからは読めなかったらしい。常連のAさんに「やっと読める」と言われて、そうだったのかと。見えてるつもりが、いちばんこわいなと思った日。</li>
+      </ol></div>
+    </div>
+  </details>
+  <details class="art">
+    <summary><span class="artno">03</span><span class="arttitle">レシートで家計の表</span><span class="chev" aria-hidden="true">▼</span></summary>
+    <div class="artbody stack">
+      <div class="exgroup"><h3><span class="fill">【分け方の名前】</span></h3>
+      <ol class="exlist" start="1">
+        <li>食べもの、外食、コンビニ、日用品、その他</li>
+        <li>食べもの、日用品、学校のもの、習いごと、交通、その他</li>
+        <li>食べもの、日用品、ガソリン、駐車場、その他</li>
+        <li>食べもの、日用品、本と文房具、美容、その他</li>
+        <li>食べもの、日用品、介護のもの、薬と病院、その他</li>
+        <li>食べもの、お弁当の材料、飲みもの、日用品、その他</li>
+      </ol></div>
+      <div class="exgroup"><h3><span class="fill">【何月】</span></h3>
+      <ol class="exlist" start="7">
+        <li>12月</li>
+        <li>11月の後半（16日〜30日）</li>
+        <li>今月（まだ途中。今日までの分）</li>
+        <li>9月から11月の3か月（月ごとに分けて）</li>
+      </ol></div>
+    </div>
+  </details>
+  </div>
+  <p class="small" style="margin-top:12px">例の中の人や会社は、すべて仮の名前です。<br>
+  本当の名前・電話番号・住所は、頼み方に入れないでください。</p>
+</section>
+
+<!-- 4 自動化のお知らせ -->
 <section id="jidoka">
-  <h2><span class="no">2</span>自動化メニューは準備中です</h2>
+  <h2><span class="no">4</span>自動化メニューは準備中です</h2>
   <p style="margin-top:12px">決めた時間に AI が自分で動いて、頼まなくても結果が手元に届く形。<br>
   それが「自動化」です。<br>
   いま、準備を進めています。<br>
@@ -132,14 +395,14 @@ footer p+p{margin-top:8px}
   </div>
 </section>
 
-<!-- 3 頼み方を保存するコツ -->
+<!-- 5 頼み方を保存するコツ -->
 <section id="hozon">
-  <h2><span class="no">3</span>「頼み方」をスマホに保存するコツ</h2>
+  <h2><span class="no">5</span>「頼み方」をスマホに保存するコツ</h2>
   <p style="margin-top:12px">毎回、記事を開いて頼み方を探すのは、面倒ですよね。<br>
   慣れてくると、いちばん効くのは「保存して、貼るだけ」の形です。</p>
   <div class="card stack" style="margin-top:16px">
     <ol class="steps">
-      <li><span>使い方ガイドの「頼み方」を、指で長押しして、全部を選んでコピーします。</span></li>
+      <li><span>上の「2 頼み方のワンタップコピー」のボタンを押して、頼み方をコピーします。</span></li>
       <li><span>スマホのメモのアプリで、新しいメモを作ります。<br>1行目に「頼み方：今日の1枚」のように、名前を書きます。</span></li>
       <li><span>2行目から、コピーした頼み方を貼って、保存します。</span></li>
       <li><span>使うときは、そのメモを開いて全部コピーし、Claude に貼ります。<br>書き換えるのは【 】のところだけです。</span></li>
@@ -153,9 +416,9 @@ footer p+p{margin-top:8px}
   </ul>
 </section>
 
-<!-- 4 よくある質問 -->
+<!-- 6 よくある質問 -->
 <section id="faq">
-  <h2><span class="no">4</span>困ったときは</h2>
+  <h2><span class="no">6</span>困ったときは</h2>
   <p style="margin-top:12px">うまくいかないときの直し方を、質問の形でまとめています。</p>
   <a class="linkcard" href="faq.html" style="margin-top:16px">
     <span class="ic" aria-hidden="true">？</span>
@@ -182,6 +445,28 @@ footer p+p{margin-top:8px}
     function done(){b.textContent='コピーしました';setTimeout(function(){b.textContent='コードをコピーする'},2000)}
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){b.textContent='長押しでコピーしてください'})}
     else{b.textContent='長押しでコピーしてください'}
+  });
+})();
+(function(){
+  var btns=document.querySelectorAll('.copybig');
+  function fallback(t){
+    var ta=document.createElement('textarea');ta.value=t;ta.setAttribute('readonly','');
+    ta.style.position='fixed';ta.style.top='0';ta.style.left='0';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.focus();ta.select();ta.setSelectionRange(0,t.length);
+    var ok=false;try{ok=document.execCommand('copy')}catch(e){ok=false}
+    document.body.removeChild(ta);return ok;
+  }
+  function selectPre(pre){
+    try{var r=document.createRange();r.selectNodeContents(pre);var s=window.getSelection();s.removeAllRanges();s.addRange(r);pre.focus()}catch(e){}
+  }
+  Array.prototype.forEach.call(btns,function(b){
+    b.addEventListener('click',function(){
+      var pre=document.getElementById(b.getAttribute('data-target'));if(!pre)return;
+      var t=pre.textContent;var orig='この頼み方をコピーする';
+      function done(){b.textContent='コピーしました';b.classList.add('done');setTimeout(function(){b.textContent=orig;b.classList.remove('done')},2500)}
+      function fail(){if(fallback(t)){done()}else{b.textContent='長押しでコピーしてください';selectPre(pre);setTimeout(function(){b.textContent=orig},3000)}}
+      if(navigator.clipboard&&navigator.clipboard.writeText&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,fail)}else{fail()}
+    });
   });
 })();
 </script>
