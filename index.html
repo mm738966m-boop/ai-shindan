@@ -83,6 +83,10 @@ h3{font-size:20px;color:var(--deep);font-weight:900}
 .book .p{font-weight:700;color:var(--gold);font-size:16px}
 .book.free{border-color:var(--line-green)}
 .book.free .p{color:var(--line-green)}
+a.book{display:block;color:inherit;text-decoration:none;position:relative}
+a.book:hover{border-color:var(--gold)}
+.book .go{display:inline-block;margin-top:6px;font-size:14px;font-weight:700;color:#0E7C86}
+.book.soon{opacity:.7}.book.soon .go{color:#8A9A9C}
 .where{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .where span{font-size:14px;font-weight:700;border-radius:999px;padding:2px 12px;background:var(--soft);color:var(--deep)}
 .hidden{display:none}
@@ -499,9 +503,9 @@ const PROMPTS=[
  {k:"今日やることの1枚",t:"頭の中の用事を、思いつくまま全部書きます。\n今日やる順に3つ選んで、1枚にまとめてください。\n急がないものは「今週中」に分けてください。\n\n【ここに、気になっている用事を、箇条書きでもバラバラでも書く】"}
 ];
 const BOOKS=[
- ["今日やることの1枚","ぐちゃぐちゃのメモを、今日やることの1枚にする",true],
- ["打ち合わせのまとめ","録画やメモを、決めたこと・宿題にまとめる"],
- ["話して記事","話したことを、記事の下書きにする"],
+ ["今日やることの1枚","ぐちゃぐちゃのメモを、今日やることの1枚にする",true,"https://note.com/yumekane/n/n566882a2eae2"],
+ ["打ち合わせのまとめ","録画やメモを、決めたこと・宿題にまとめる",false,"https://note.com/yumekane/n/n84bb7e3c4767"],
+ ["話して記事","話したことを、記事の下書きにする",false,"https://note.com/yumekane/n/n1d7d16ea855d"],
  ["返事の下書き","返事の下書きを、自分の口ぐせで作る（送るのは自分）"],
  ["SNSの下書き","SNSの投稿文を下書きして、自分の言葉に直す"],
  ["長い文章の要点","長い文章・資料の要点を取り出す"],
@@ -547,7 +551,7 @@ function result(){
   <div class="stack">
     <h2>${t<=3?"もっと知りたくなったら":"使い方ガイドも、1本ずつ"}</h2>
     <p>Claudeのふつうの使い方を、1本1テーマで書いた記事です。noteとBrainで読めます。読んで10〜20分で試せます。1本目は、まるごと無料です。</p>
-    <div class="books">${[0].concat(bs.filter(n=>n!==0)).map(n=>{const b=BOOKS[n];return `<div class="book${b[2]?" free":""}"><div class="p">${b[2]?"まるごと無料":"980円"}</div><b>${b[1]}</b></div>`}).join("")}</div>
+    <div class="books">${[0].concat(bs.filter(n=>n!==0)).map(n=>{const b=BOOKS[n];return b[3]?`<a class="book${b[2]?" free":""}" href="${b[3]}?ref=shindan" target="_blank" rel="noopener"><div class="p">${b[2]?"まるごと無料":"980円"}</div><b>${b[1]}</b><span class="go">noteで読む</span></a>`:`<div class="book soon"><div class="p">${b[2]?"まるごと無料":"980円"}</div><b>${b[1]}</b><span class="go">近日</span></div>`}).join("")}</div>
     <div class="where"><span>noteで読めます</span><span>Brainでも読めます</span></div>
     <p class="small">有料の記事は、無料の冒頭を読んでから買えます。買ったあとの返金はできません。</p>
   </div>
