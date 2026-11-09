@@ -510,19 +510,22 @@ const BOOKS=[
  ["SNSの下書き","SNSの投稿文を下書きして、自分の言葉に直す"],
  ["長い文章の要点","長い文章・資料の要点を取り出す"],
  ["頼み方の型","同じ頼み方を「型」にして保存する（自動化の土台）"],
- ["AIの間違いの直し方","AIが変なことを言ったとき、直す・確かめる"]
+ ["AIの間違いの直し方","AIが変なことを言ったとき、直す・確かめる"],
+ ["レシートで家計の表","財布のレシートの写真を、家計の表にする",false,"https://note.com/yumekane/n/nd216ccf20271"]
 ];
 const T={
- 1:{img:"mascot_base",name:"はじめの一歩タイプ",lead:"今は、自動化はまだ早いです。まずはClaude（クロード）に頼むことに慣れるところからです。",body:"AIをまだあまり使っていない状態です。悪いことではありません。自動化は「決めた時間にAIが自分で動く」仕組みなので、頼むことに慣れてからの方がつまずきません。",books:[0,7],rung:1,ladderNote:"取説と自動化は、今は勧めません。必要になったときに見てください。"},
- 2:{img:"mascot_think",name:"会社のルールの中で使うタイプ",lead:"自動化は、いまは勧めません。会社に決まりがあるなら、それを守るのが先です。",body:"会社のパソコンやソフトに決まりがあると、自動化の仕組みはそのまま持ち込めないことが多いです。会社やお客さまの情報をAIに貼ってよいかも、会社が決めることです。迷うときは貼らないでください。下の頼み方も、自分のメモで試してください。",books:[1,5,6],rung:1,ladderNote:"会社と関係のない副業などで、AIを自動で動かしたくなったら、そのときに取説を見てください。それまで買わなくて大丈夫です。"},
+ 1:{img:"mascot_base",name:"はじめの一歩タイプ",lead:"今は、自動化はまだ早いです。まずはClaude（クロード）に頼むことに慣れるところからです。",body:"AIをまだあまり使っていない状態です。悪いことではありません。自動化は「決めた時間にAIが自分で動く」仕組みなので、頼むことに慣れてからの方がつまずきません。",books:[0,7,8],rung:1,ladderNote:"取説と自動化は、今は勧めません。必要になったときに見てください。"},
+ 2:{img:"mascot_think",name:"会社のルールの中で使うタイプ",lead:"自動化は、いまは勧めません。会社に決まりがあるなら、それを守るのが先です。",body:"会社のパソコンやソフトに決まりがあると、自動化の仕組みはそのまま持ち込めないことが多いです。会社やお客さまの情報をAIに貼ってよいかも、会社が決めることです。迷うときは貼らないでください。下の頼み方も、自分のメモで試してください。",books:[1,5,6,8],rung:1,ladderNote:"会社と関係のない副業などで、AIを自動で動かしたくなったら、そのときに取説を見てください。それまで買わなくて大丈夫です。"},
  3:{img:"mascot_point",name:"使い方を磨くタイプ",lead:"AIは使えています。同じ作業のくり返しはまだ少ないので、自動化より「使い方を磨く」方が効きます。",body:"自動化が効くのは、同じ形の作業が毎週たくさんあるときです。いまはそこまでではありません。困っているところに合う使い方ガイドを、3本まで選べば十分です。",books:null,rung:1,ladderNote:"自動化の世界が気になったら、取説で全体の絵を見られます。くり返しの作業が増えたときに、改めて考えてください。"},
  4:{img:"mascot_point",name:"自動化の入口タイプ",lead:"AIに慣れてきて、くり返しの作業もあります。自動化を試してよい段階です。",body:"自動化には、Claudeの有料プラン（Pro・月3,000円ほど）が要ります。代金とは別です。取説を読んでから、入るかどうか決められます。自動化の仕組みはいま準備中で、できたらLINEでお知らせします。",books:null,rung:2,steps:["Claude Codeの取説（1,980円）を読む。自動化に何が要るか分かります","合いそうなら「お試し」（2,980円）。毎朝7時に今日やることの1枚が届く、いちばん小さな自動化です","動いたら、3つセット（14,800円）で仕組みを足す"]},
  5:{img:"mascot_invite",name:"まかせて回すタイプ",lead:"毎日AIを使い、くり返しも多く、自分で決められる立場です。自動化がいちばん効きやすいタイプです。",body:"全部を一度に入れる必要はありません。お試しの「朝の1枚」から始めて、足していくこともできます。自動化には、Claudeの有料プラン（Pro・月3,000円ほど）が別に要ります。仕組みはいま準備中で、できたらLINEでお知らせします。",books:null,rung:3,steps:["取説（1,980円）で、全体と安全な使い方をつかむ","お試し（2,980円）か、よく使う3つを組んだ3つセット（14,800円）から入る","全部まとめて入れたくなったら、全部セット（29,800円）"]}
 };
 function bookOrder(q5){
-  const m={0:[3,4,1],1:[0,6,1],2:[1,2,6],3:[5,7,0],4:[0,6,7]};
-  return m[q5]??[0,1,3];
+  const m={0:[3,4,1,8],1:[0,6,1,8],2:[1,2,6,8],3:[5,7,0,8],4:[0,6,7,8]};
+  return m[q5]??[0,1,3,8];
 }
+const LINE_ADD={1:"",2:"",3:"",4:"",5:""};
+const LINE_MSG=t=>"https://line.me/R/oaMessage/@608luyff/?"+encodeURIComponent("AI診断 "+T[t].name);
 function result(){
   $("#bar").style.width="100%";
   const t=judge(),d=T[t],q5=A[4];
@@ -565,12 +568,17 @@ function result(){
 
   <div class="soft stack" style="text-align:center">
     <p><b>結果ごとの使い方ガイドの一覧と、新しい頼み方を、LINEでお届けします。</b><br>登録しなくても、結果はこの画面で見られます。</p>
-    <a class="btn main wide" href="#" id="line">LINEで友だち追加して、一覧を受け取る</a>
-    <p class="small">ボタンを押すとLINEが開きます。友だち追加のあと、届くメッセージから一覧を受け取れます。</p>
+    <a class="btn main wide" href="${LINE_ADD[t]||"#"}" id="line" target="_blank" rel="noopener">LINEで友だち追加して、一覧を受け取る</a>
+    <p class="small">ボタンを押すとLINEが開きます。友だち追加のあと、届くメッセージから一覧を受け取れます。<br>タイプ名だけが記録されます。9問の答えは残りません。</p>
+    ${LINE_ADD[t]?`<details class="small" style="margin-top:10px"><summary style="cursor:pointer">すでにLINEの友だちの方は、こちら</summary>
+      <p style="margin-top:8px">すでに友だちの方は、友だち追加はいりません。<br>下のボタンを押すとLINEが開きます。<br>入力欄に文字が入っているので、そのまま「送信」を押してください。<br>送ったあと、続きのメッセージがこのトークに届きます。</p>
+      <a class="btn sub" href="${LINE_MSG(t)}" id="line2">トークに送るだけです</a>
+    </details>`:""}
   </div>
   <p style="text-align:center"><button class="link" id="again">もう一度、診断する</button></p>`;
   $("#cp").onclick=()=>{navigator.clipboard?.writeText($("#pt").textContent).then(()=>{$("#cp").textContent="コピーしました"}).catch(()=>{$("#cp").textContent="長押しで選んでコピーしてください"})};
   $("#again").onclick=()=>{A.length=0;i=0;r.classList.add("hidden");$("#start").classList.remove("hidden");scrollTo(0,0)};
+  $("#line").onclick=()=>{if(window.track)track("line_add",{type:t})};if($("#line2"))$("#line2").onclick=()=>{if(window.track)track("line_msg",{type:t})};
   if(window.track)track("quiz_done",{type:t});
 }
 </script>
